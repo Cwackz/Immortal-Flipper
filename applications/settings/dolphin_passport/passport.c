@@ -12,35 +12,14 @@
 #define MOODS_TOTAL 1
 #define BUTTHURT_MAX 14
 
-typedef enum {
-    EventTypeTick,
-    EventTypeKey,
-} EventType;
-
-typedef struct {
-    EventType type;
-    InputEvent input;
-} PluginEvent;
-
-typedef struct {
-    FuriMessageQueue* event_queue;
-
-    Dolphin* dolphin;
-    DolphinStats stats;
-
-    DesktopSettings* desktop_settings;
-
-    uint8_t counter;
-} Passport;
-
 static const Icon* const portrait_happy[7] = {
     &I_passport_happy1_46x49,
     &I_passport_happy2_46x49,
     &I_passport_happy3_46x49,
     &I_G0ku,
     &I_g0ku_1,
-    &I_g0ku_2,
-    &I_g0ku_3};
+    &I_FSociety,
+    &I_H4CK3R};
 // static const Icon* const portrait_ok[MOODS_TOTAL] = {
 // &I_passport_okay1_46x49,
 // &I_passport_okay2_46x49,
@@ -71,17 +50,18 @@ static const char* const moods[16] = {
     "Angry",
     "Furious"};
 
-static void input_callback(InputEvent* input, FuriMessageQueue* event_queue) {
-    furi_assert(event_queue);
+static void input_callback(InputEvent* input, void* ctx) {
+    FuriSemaphore* semaphore = ctx;
 
-    PluginEvent event = {.type = EventTypeKey, .input = *input};
-    furi_message_queue_put(event_queue, &event, 0);
+    if((input->type == InputTypeShort) && (input->key == InputKeyBack)) {
+        furi_semaphore_release(semaphore);
+    }
 }
 
 static void render_callback(Canvas* canvas, void* ctx) {
-    Passport* passport = ctx;
-    DolphinStats* stats = &passport->stats;
-    DesktopSettings* desktop_settings = passport->desktop_settings;
+    DolphinStats* stats = ctx;
+    DesktopSettings* desktop_settings = malloc(sizeof(DesktopSettings));
+    DESKTOP_SETTINGS_LOAD(desktop_settings);
 
     char level_str[12];
     char xp_str[14];
@@ -91,9 +71,6 @@ static void render_callback(Canvas* canvas, void* ctx) {
     if(desktop_settings->is_dumbmode) moodStrIndex = moodStrIndex + 4;
     snprintf(mood_str, 20, "Mood: %s", moods[moodStrIndex]);
     mood = 0; // DONT NEED DIFFERENT PICS BASED ON MOOD
-
-    // UNUSED(mood);
-    // UNUSED(portraits);
 
     uint32_t xp_progress = 0;
     uint32_t xp_to_levelup = dolphin_state_xp_to_levelup(stats->icounter);
@@ -120,88 +97,6 @@ static void render_callback(Canvas* canvas, void* ctx) {
     if(stats->level > 27) tmpLvl = 6;
     canvas_draw_icon(canvas, 11, 2, portraits[mood][tmpLvl]);
 
-    /*//Rabbit
-	if((passport->counter >= 1) && (passport->counter < 5))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_rabbit_00);
-	}
-	else if((passport->counter >= 5) && (passport->counter < 10))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_rabbit_01);
-	}
-	else if((passport->counter >= 10) && (passport->counter < 15))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_rabbit_02);
-	}
-	else if((passport->counter >= 15) && (passport->counter < 20))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_rabbit_03);
-	}
-	else if((passport->counter >= 20) && (passport->counter < 25))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_rabbit_04);
-	}
-	else if((passport->counter >= 25) && (passport->counter < 30))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_rabbit_05);
-	}
-	else if((passport->counter >= 30) && (passport->counter < 35))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_rabbit_06);
-	}
-	else if((passport->counter >= 35) && (passport->counter < 40))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_rabbit_07);
-	}
-	
-	passport->counter++;
-	
-	if(passport->counter == 41)
-	{
-		passport->counter = 1;
-	}
-	//Sonic
-	if((passport->counter >= 1) && (passport->counter < 2))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_sonic_00);
-	}
-	else if((passport->counter >= 2) && (passport->counter < 3))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_sonic_01);
-	}
-	else if((passport->counter >= 3) && (passport->counter < 4))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_sonic_02);
-	}
-	else if((passport->counter >= 4) && (passport->counter < 5))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_sonic_03);
-	}
-	else if((passport->counter >= 5) && (passport->counter < 6))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_sonic_04);
-	}
-	else if((passport->counter >= 6) && (passport->counter < 7))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_sonic_05);
-	}
-	else if((passport->counter >= 7) && (passport->counter < 8))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_sonic_06);
-	}
-	else if((passport->counter >= 8) && (passport->counter < 9))
-	{
-		canvas_draw_icon(canvas, 11, 2, &I_sonic_07);
-	}
-	
-	passport->counter++;
-	
-	if(passport->counter == 10)
-	{
-		passport->counter = 1;
-	}
-
-	*/
     const char* my_name = furi_hal_version_get_name_ptr();
     snprintf(level_str, 12, "Level: %hu", stats->level);
     snprintf(xp_str, 14, "%lu/%lu", xp_above_last_levelup, xp_for_current_level);
@@ -219,74 +114,28 @@ static void render_callback(Canvas* canvas, void* ctx) {
     canvas_set_color(canvas, ColorBlack);
 }
 
-Passport* passport_alloc() {
-    Passport* app = malloc(sizeof(Passport));
-
-    app->event_queue = furi_message_queue_alloc(10, sizeof(PluginEvent));
-    app->counter = 0;
-
-    return app;
-}
-
 int32_t passport_app(void* p) {
     UNUSED(p);
-    Passport* passport = passport_alloc();
+    FuriSemaphore* semaphore = furi_semaphore_alloc(1, 0);
+    furi_assert(semaphore);
 
     ViewPort* view_port = view_port_alloc();
 
-    passport->dolphin = furi_record_open(RECORD_DOLPHIN);
-    passport->stats = dolphin_stats(passport->dolphin);
+    Dolphin* dolphin = furi_record_open(RECORD_DOLPHIN);
+    DolphinStats stats = dolphin_stats(dolphin);
     furi_record_close(RECORD_DOLPHIN);
-
-    passport->desktop_settings = malloc(sizeof(DesktopSettings));
-    DESKTOP_SETTINGS_LOAD(passport->desktop_settings);
-
-    view_port_draw_callback_set(view_port, render_callback, passport);
-    view_port_input_callback_set(view_port, input_callback, passport->event_queue);
-
+    view_port_draw_callback_set(view_port, render_callback, &stats);
+    view_port_input_callback_set(view_port, input_callback, semaphore);
     Gui* gui = furi_record_open(RECORD_GUI);
     gui_add_view_port(gui, view_port, GuiLayerFullscreen);
     view_port_update(view_port);
 
-    PluginEvent event;
-    for(bool processing = true; processing;) {
-        FuriStatus event_status = furi_message_queue_get(passport->event_queue, &event, 10);
+    furi_check(furi_semaphore_acquire(semaphore, FuriWaitForever) == FuriStatusOk);
 
-        if(event_status == FuriStatusOk) {
-            // press events
-            if(event.type == EventTypeKey) {
-                if(event.input.type == InputTypePress) {
-                    switch(event.input.key) {
-                    case InputKeyUp:
-                        break;
-                    case InputKeyDown:
-                        break;
-                    case InputKeyRight:
-                        break;
-                    case InputKeyLeft:
-                        break;
-                    case InputKeyOk:
-                        break;
-                    case InputKeyBack:
-                        processing = false;
-                        break;
-                    default:
-                        break;
-                    }
-                }
-            }
-        }
-
-        view_port_update(view_port);
-    }
-
-    view_port_enabled_set(view_port, false);
     gui_remove_view_port(gui, view_port);
     view_port_free(view_port);
-    furi_message_queue_free(passport->event_queue);
     furi_record_close(RECORD_GUI);
-    //furi_semaphore_free(semaphore);
-    free(passport);
+    furi_semaphore_free(semaphore);
 
     return 0;
 }
