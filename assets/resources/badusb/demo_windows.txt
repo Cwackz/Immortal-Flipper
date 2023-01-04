@@ -1,0 +1,58 @@
+REM This is BadUSB demo script for windows
+
+REM Open windows notepad
+DELAY 1000
+GUI r
+DELAY 500
+STRING notepad
+DELAY 500
+ENTER
+DELAY 750
+
+STRING Hello User!
+ENTER
+DEFAULT_DELAY 50
+
+REM Copy-Paste previous string
+UP
+HOME
+SHIFT DOWN
+CTRL c
+RIGHT
+CTRL v
+CTRL v
+
+REM Alt code input demo
+ALTCHAR 7
+ALTSTRING This line was print using Alt+Numpad input method. It works even if non-US keyboard layout is selected
+ENTER
+
+STRING =
+REPEAT 59
+ENTER
+ENTER
+
+STRING     ____                               __        __   _________                    
+ENTER
+HOME
+STRING    /  _/___ ___  ____ ___  ____  _____/ /_____ _/ /  / ____/ (_)___  ____  ___  _____
+ENTER
+HOME
+STRING    / // __ `__ \/ __ `__ \/ __ \/ ___/ __/ __ `/ /  / /_  / / / __ \/ __ \/ _ \/ ___/
+ENTER
+HOME
+STRING  _/ // / / / / / / / / / / /_/ / /  / /_/ /_/ / /  / __/ / / / /_/ / /_/ /  __/ /
+ENTER
+HOME
+STRING /___/_/ /_/ /_/_/ /_/ /_/\____/_/   \__/\__,_/_/  /_/   /_/_/ .___/ .___/\___/_/  
+ENTER
+HOME
+ENTER
+STRING IMMORTAL FLIPPER - Roguemaster Fork
+ENTER
+STRING https://github.com/Cwackz/FlipperZero
+ENTER
+HOME
+STRING =
+REPEAT 59
+ENTER
