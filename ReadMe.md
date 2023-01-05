@@ -2,6 +2,8 @@
 
 This software is for experimental purposes only and is not meant for any illegal activity/purposes. We do not condone illegal activity and strongly encourage keeping transmissions to legal/valid uses allowed by law.
 
+Want to get your own script added and get on the credit page? dm me with a quick explanation on what the script does and i will add it. benjamin#6666
+
 ## [Support Us!](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/SUPPORT.md)
 Everyone gives much of their uncompensated free time to ensure the success of the Flipper Zero!
 Thank you to all the supporters!
@@ -76,9 +78,6 @@ $ ./fbt resources icons dolphin_ext
 [spydamarkman](https://github.com/Spydamarkman?tab=repositories) 
 ##
 Dont see your credit or did you find a wrongfully given credit? dm me and i will get it fixed soon as possible benjamin#6666
-##
-Want to get your own script added and get on the credit page? dm me with a quick explanation on what the script does and i will add it. benjamin#6666 
-
 
 ## All Changes/Features
 
