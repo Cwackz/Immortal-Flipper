@@ -73,7 +73,11 @@ $ ./fbt resources icons dolphin_ext
 [I-Am-Jakoby](https://github.com/I-Am-Jakoby),
 [FalsePhilosopher](https://github.com/FalsePhilosopher),
 [UberGuidoZ](https://github.com/UberGuidoZ),
-[spydamarkman](https://github.com/Spydamarkman?tab=repositories) (i think its the right link)
+[spydamarkman](https://github.com/Spydamarkman?tab=repositories) 
+##
+Dont see your credit or did you find a wrongfully given credit? dm me and i will get it fixed soon as possible benjamin#6666
+##
+Want to get your own script added and get on the credit page? dm me with a quick explanation on what the script does and i will add it. benjamin#6666 
 
 
 ## All Changes/Features
