@@ -1,4 +1,4 @@
-# Flipper Zero FW [ROGUEMASTER]
+# Flipper Zero FW [IMMORTAL-FLIPPER]
 
 This software is for experimental purposes only and is not meant for any illegal activity/purposes. We do not condone illegal activity and strongly encourage keeping transmissions to legal/valid uses allowed by law.
 
