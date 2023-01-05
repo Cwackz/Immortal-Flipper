@@ -16,6 +16,7 @@ Support Me (:
 - Donations: ETH: `0x27A128dEe604D04B9428f78f08460CB6bA75e1cA`
 - Donations: SOL: `5qz8JZyoqMXtX6vyNE3wQaZUNxjUgwoEWwCyUjFcyhpw`
 
+##
 - Last Synced/Checked [Unleashed/xMasterX](https://github.com/DarkFlippers/unleashed-firmware), changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md) and in [commits](https://github.com/DarkFlippers/unleashed-firmware/commits/dev): `2022-12-27 09:31 EST`
 - Last Synced/Checked [OFW](https://github.com/flipperdevices/flipperzero-firmware), changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2022-12-27 09:31 EST`
 - Assets: Added BadUSB Scripts, Custom Animations and more!
