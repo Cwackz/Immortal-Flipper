@@ -4,20 +4,18 @@
 #include <flipper_format/flipper_format.h>
 
 void namechanger_on_system_start() {
-    Storage* storage = furi_record_open(RECORD_STORAGE);
-    FlipperFormat* file = flipper_format_file_alloc(storage);
+    if(furi_hal_rtc_get_boot_mode() != FuriHalRtcBootModeNormal) {
+        FURI_LOG_W(TAG, "NameChangerSRV load skipped. Device is in special startup mode.");
+    } else {
+        Storage* storage = furi_record_open(RECORD_STORAGE);
+        FlipperFormat* file = flipper_format_file_alloc(storage);
 
-    FuriString* NAMEHEADER;
-    NAMEHEADER = furi_string_alloc_set("Flipper Name File");
+        FuriString* NAMEHEADER;
+        NAMEHEADER = furi_string_alloc_set("Flipper Name File");
 
-    FuriString* folderpath;
-    folderpath = furi_string_alloc_set("/ext/dolphin");
+        FuriString* filepath;
+        filepath = furi_string_alloc_set("/ext/dolphin/name.txt");
 
-    FuriString* filepath;
-    filepath = furi_string_alloc_set("/ext/dolphin/name.txt");
-
-    //Make dir if doesn't exist
-    if(storage_simply_mkdir(storage, furi_string_get_cstr(folderpath))) {
         bool result = false;
 
         FuriString* data;
@@ -59,9 +57,6 @@ void namechanger_on_system_start() {
 
             bool res = false;
 
-            FuriString* name;
-            name = furi_string_alloc_set(furi_hal_version_get_name_ptr());
-
             do {
                 // Open file for write
                 if(!flipper_format_file_open_always(file, furi_string_get_cstr(filepath))) {
@@ -92,7 +87,8 @@ void namechanger_on_system_start() {
                 }
 
                 //Write name
-                if(!flipper_format_write_string_cstr(file, "Name", furi_string_get_cstr(name))) {
+                if(!flipper_format_write_string_cstr(
+                       file, "Name", furi_hal_version_get_name_ptr())) {
                     break;
                 }
 
@@ -104,20 +100,12 @@ void namechanger_on_system_start() {
             if(!res) {
                 FURI_LOG_E(TAG, "Save failed.");
             }
-
-            furi_string_free(name);
         } else {
-            furi_string_trim(data);
-            FURI_LOG_I(TAG, "data: %s", furi_string_get_cstr(data));
-
             if(!furi_string_size(data)) {
                 //Empty file - get default name and write to file.
                 FlipperFormat* file = flipper_format_file_alloc(storage);
 
                 bool res = false;
-
-                FuriString* name;
-                name = furi_string_alloc_set(furi_hal_version_get_name_ptr());
 
                 do {
                     // Open file for write
@@ -151,7 +139,7 @@ void namechanger_on_system_start() {
 
                     //Write name
                     if(!flipper_format_write_string_cstr(
-                           file, "Name", furi_string_get_cstr(name))) {
+                           file, "Name", furi_hal_version_get_name_ptr())) {
                         break;
                     }
 
@@ -163,18 +151,17 @@ void namechanger_on_system_start() {
                 if(!res) {
                     FURI_LOG_E(TAG, "Save failed.");
                 }
-
-                furi_string_free(name);
             } else {
+                char newdata[9];
+                snprintf(newdata, 9, "%s", furi_string_get_cstr(data));
                 //set name from file
-                furi_hal_version_set_custom_name(furi_string_get_cstr(data));
+                furi_hal_version_set_custom_name(newdata);
             }
         }
 
         furi_string_free(data);
-    }
 
-    furi_string_free(filepath);
-    furi_string_free(folderpath);
-    furi_record_close(RECORD_STORAGE);
+        furi_string_free(filepath);
+        furi_record_close(RECORD_STORAGE);
+    }
 }
