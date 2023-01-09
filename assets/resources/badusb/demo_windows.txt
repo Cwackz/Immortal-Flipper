@@ -9,7 +9,7 @@ DELAY 500
 ENTER
 DELAY 750
 
-STRING Hello World!
+STRING Hello User!
 ENTER
 DEFAULT_DELAY 50
 
@@ -32,53 +32,27 @@ REPEAT 59
 ENTER
 ENTER
 
-STRING               _.-------.._                    -,
+STRING     ____                               __        __   _________                    
 ENTER
 HOME
-STRING           .-"```"--..,,_/ /`-,               -,  \ 
+STRING    /  _/___ ___  ____ ___  ____  _____/ /_____ _/ /  / ____/ (_)___  ____  ___  _____
 ENTER
 HOME
-STRING        .:"          /:/  /'\  \     ,_...,  `. |  |
+STRING    / // __ `__ \/ __ `__ \/ __ \/ ___/ __/ __ `/ /  / /_  / / / __ \/ __ \/ _ \/ ___/
 ENTER
 HOME
-STRING       /       ,----/:/  /`\ _\~`_-"`     _;
+STRING  _/ // / / / / / / / / / / /_/ / /  / /_/ /_/ / /  / __/ / / / /_/ / /_/ /  __/ /
 ENTER
 HOME
-STRING      '      / /`"""'\ \ \.~`_-'      ,-"'/ 
-ENTER
-HOME
-STRING     |      | |  0    | | .-'      ,/`  /
-ENTER
-HOME
-STRING    |    ,..\ \     ,.-"`       ,/`    /
-ENTER
-HOME
-STRING   ;    :    `/`""\`           ,/--==,/-----,
-ENTER
-HOME
-STRING   |    `-...|        -.___-Z:_______J...---;
-ENTER
-HOME
-STRING   :         `                           _-'
-ENTER
-HOME
-STRING  _L_  _     ___  ___  ___  ___  ____--"`
-ENTER
-HOME
-STRING | __|| |   |_ _|| _ \| _ \| __|| _ \ 
-ENTER
-HOME
-STRING | _| | |__  | | |  _/|  _/| _| |   / 
-ENTER
-HOME
-STRING |_|  |____||___||_|  |_|  |___||_|_\ 
+STRING /___/_/ /_/ /_/_/ /_/ /_/\____/_/   \__/\__,_/_/  /_/   /_/_/ .___/ .___/\___/_/  
 ENTER
 HOME
 ENTER
-
-STRING Flipper Zero BadUSB feature is compatible with USB Rubber Ducky script format
+STRING IMMORTAL FLIPPER - Roguemaster Fork
 ENTER
-STRING More information about script syntax can be found here:
+STRING https://github.com/Cwackz/FlipperZero
 ENTER
-STRING https://github.com/flipperdevices/flipperzero-firmware/blob/dev/documentation/file_formats/BadUsbScriptFormat.md
+HOME
+STRING =
+REPEAT 59
 ENTER
