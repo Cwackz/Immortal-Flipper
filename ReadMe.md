@@ -24,10 +24,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0110-0011-0.74.3-6822ffd](https://www.patreon.com/posts/77032939) 
+## Latest Updates - [PATREON: Latest Release RM0111-0737-0.74.3-6e58aa5](https://www.patreon.com/posts/77090176) 
 
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md) and in [commits](https://github.com/DarkFlippers/unleashed-firmware/commits/dev): `2023-01-09 13:47 EST`
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2023-01-09 13:47 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md) and in [commits](https://github.com/DarkFlippers/unleashed-firmware/commits/dev): `2023-01-11 07:53 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2023-01-11 07:53 EST`
 - [Fixed boot loop during updating (By ESurge)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/489)
 - Updated: [Temp Sensors Reader (By quen0n)](https://github.com/quen0n/Unitemp-Flipper-Zero-Plugin) `Req: BMP180/BMP280/BME280/BME680/DHT11/DHT22(AM2302)/AM2301/AM2320/HTU2XD/HTU21x/HDC1080`
 - Updated: [Etch-A-Sketch (By SimplyMinimal)](https://github.com/SimplyMinimal/FlipperZero-Etch-A-Sketch)
@@ -57,6 +57,14 @@ This software is for experimental purposes only and is not meant for any illegal
 - Added: [RGB LED (By flyandi)](https://github.com/flyandi/flipper_zero_rgb_led)
 - [Patreon Builds Update: ALL + Anime + Select Builds: Added 3 Akira animations (By RogueMaster)](https://github.com/RogueMaster/awesome-flipperzero-withModules/commit/e40f48ee4c8d75f9fcf634919cf806b1329b32da) [Thanks to one of our RM Animation Coordinators (RM Extreme) on Patreon!](https://www.patreon.com/RogueMaster/membership)
 - [Patreon Builds Update: 18 Plus Builds: Added 1 Cool Devices and 2 Bible Black animations (By RogueMaster)](https://www.patreon.com/RogueMaster/membership)
+- Updated ReadMe's for Geiger Counter, GPS, Toy Serial and UART Terminal
+- Updated: [Rubik's Cube Scrambler (By RaZeSloth)](https://github.com/RaZeSloth/flipperzero-rubiks-cube-scrambler)
+- Updated: [WAV Recorder (By scrolltex)](https://github.com/scrolltex/flipper-wav-recorder)
+- Updated: [Asteroids (Modified By SimplyMinimal)](https://github.com/SimplyMinimal/FlipperZero-Asteroids)
+- Updated: [Wii EC Analyser (By csBlueChip)](https://github.com/csBlueChip/FlipperZero_WiiEC)
+- Added: [CLI Bridge (By ranchordo)](https://github.com/ranchordo/flipperzero-cli-bridge)
+- Updated: [Rubik's Cube Scrambler (By RaZeSloth)](https://github.com/RaZeSloth/flipperzero-rubiks-cube-scrambler)
+- Added: BadUSB: [Install qFlipper For Windows (By DXVVAY)](https://github.com/flipperdevices/flipperzero-firmware/pull/2182)
 
 <a name="release">
 
@@ -223,7 +231,7 @@ $ ./fbt dolphin_ext
 - [2048 (By OlegSchwann)](https://github.com/OlegSchwann/flipperzero-firmware/tree/hackaton/game_2048/applications/game-2048) [(Score By DevMilanIan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/186)
 - [2048 (By eugene-kirzhanov)](https://github.com/eugene-kirzhanov/flipper-zero-2048-game) (Titled 2048 (Improved))
 - [Arkanoid (By gotnull)](https://github.com/gotnull/flipperzero-firmware-wPlugins) [(Score By DevMilanIan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/188)
-- [Asteroids (By antirez)](https://github.com/antirez/flipper-asteroids)
+- [Asteroids (By antirez)](https://github.com/antirez/flipper-asteroids) [(Modified By SimplyMinimal)](https://github.com/SimplyMinimal/FlipperZero-Asteroids)
 - [BlackJack (By teeebor)](https://github.com/teeebor/flipper_games)
 - [Dice Roller Including SEX/WAR/8BALL/WEED DICE (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/applications/dice/dice.c)
 - [Dice (By Ka3u6y6a)](https://github.com/Ka3u6y6a/flipper-zero-dice)
