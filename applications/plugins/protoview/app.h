@@ -43,8 +43,12 @@ typedef enum {
     ViewInfo,
     ViewFrequencySettings,
     ViewModulationSettings,
+    ViewDirectSampling,
     ViewLast, /* Just a sentinel to wrap around. */
 } ProtoViewCurrentView;
+
+/* Used by app_switch_view() */
+typedef enum { AppNextView, AppPrevView } SwitchViewDirection;
 
 typedef struct {
     const char* name;
@@ -58,10 +62,21 @@ extern ProtoViewModulation ProtoViewModulations[]; /* In app_subghz.c */
  * It receives data and we get our protocol "feed" callback called
  * with the level (1 or 0) and duration. */
 struct ProtoViewTxRx {
+    bool freq_mod_changed; /* The user changed frequency and/or modulation
+                                   from the interface. There is to restart the
+                                   radio with the right parameters. */
     SubGhzWorker* worker; /* Our background worker. */
     SubGhzEnvironment* environment;
     SubGhzReceiver* receiver;
     TxRxState txrx_state; /* Receiving, idle or sleeping? */
+
+    /* Timer sampling mode state. */
+    bool debug_timer_sampling; /* Read data from GDO0 in a busy loop. Only
+                                   for testing. */
+    uint32_t last_g0_change_time; /* Last high->low (or reverse) switch. */
+    bool last_g0_value; /* Current value (high or low): we are
+                                     checking the duration in the timer
+                                     handler. */
 };
 
 typedef struct ProtoViewTxRx ProtoViewTxRx;
@@ -98,6 +113,8 @@ struct ProtoViewApp {
     uint32_t signal_bestlen; /* Longest coherent signal observed so far. */
     bool signal_decoded; /* Was the current signal decoded? */
     ProtoViewMsgInfo signal_info; /* Decoded message, if signal_decoded true. */
+    bool direct_sampling_enabled; /* This special view needs an explicit
+                                     acknowledge to work. */
 
     /* Raw view apps state. */
     uint32_t us_scale; /* microseconds per pixel. */
@@ -129,6 +146,8 @@ uint32_t radio_rx(ProtoViewApp* app);
 void radio_idle(ProtoViewApp* app);
 void radio_rx_end(ProtoViewApp* app);
 void radio_sleep(ProtoViewApp* app);
+void raw_sampling_worker_start(ProtoViewApp* app);
+void raw_sampling_worker_stop(ProtoViewApp* app);
 
 /* signal.c */
 uint32_t duration_delta(uint32_t a, uint32_t b);
@@ -153,6 +172,13 @@ uint32_t convert_from_line_code(
     uint32_t offset,
     const char* zero_pattern,
     const char* one_pattern);
+uint32_t convert_from_diff_manchester(
+    uint8_t* buf,
+    uint64_t buflen,
+    uint8_t* bits,
+    uint32_t len,
+    uint32_t off,
+    bool previous);
 
 /* view_*.c */
 void render_view_raw_pulses(Canvas* const canvas, ProtoViewApp* app);
@@ -161,6 +187,11 @@ void render_view_settings(Canvas* const canvas, ProtoViewApp* app);
 void process_input_settings(ProtoViewApp* app, InputEvent input);
 void render_view_info(Canvas* const canvas, ProtoViewApp* app);
 void process_input_info(ProtoViewApp* app, InputEvent input);
+void render_view_direct_sampling(Canvas* const canvas, ProtoViewApp* app);
+void process_input_direct_sampling(ProtoViewApp* app, InputEvent input);
+void view_enter_direct_sampling(ProtoViewApp* app);
+void view_exit_direct_sampling(ProtoViewApp* app);
+void view_exit_settings(ProtoViewApp* app);
 
 /* ui.c */
 void canvas_draw_str_with_border(
