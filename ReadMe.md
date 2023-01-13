@@ -24,10 +24,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0111-2326-0.75.1-0a8fcd6](https://www.patreon.com/posts/77118651) 
+## Latest Updates - [PATREON: Latest Release RM0113-1211-0.75.1-f666e72](https://www.patreon.com/posts/77193001)
 
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md) and in [commits](https://github.com/DarkFlippers/unleashed-firmware/commits/dev): `2023-01-11 07:53 EST`
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2023-01-11 07:53 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md) and in [commits](https://github.com/DarkFlippers/unleashed-firmware/commits/dev): `2023-01-13 12:06 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2023-01-13 12:06 EST`
 - [Fixed boot loop during updating (By ESurge)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/489)
 - Updated: [Temp Sensors Reader (By quen0n)](https://github.com/quen0n/Unitemp-Flipper-Zero-Plugin) `Req: BMP180/BMP280/BME280/BME680/DHT11/DHT22(AM2302)/AM2301/AM2320/HTU2XD/HTU21x/HDC1080`
 - Updated: [Etch-A-Sketch (By SimplyMinimal)](https://github.com/SimplyMinimal/FlipperZero-Etch-A-Sketch)
@@ -63,8 +63,11 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Wii EC Analyser (By csBlueChip)](https://github.com/csBlueChip/FlipperZero_WiiEC)
 - Added: [CLI Bridge (By ranchordo)](https://github.com/ranchordo/flipperzero-cli-bridge)
 - Added: BadUSB: [Install qFlipper For Windows (By DXVVAY)](https://github.com/flipperdevices/flipperzero-firmware/pull/2182)
-- Updated: [Protocol Visualizer (By antirez)](https://github.com/antirez/protoview)
 - Updated: [Rubik's Cube Scrambler (By RaZeSloth)] https://github.com/RaZeSloth/flipperzero-rubiks-cube-scrambler
+- OFW: Add the ability to turn pages in infrared (flipperdevices#2271) 
+- OFW: [FL-3078] Per protocol signal repeat count (flipperdevices#2293) 
+- Updated: [Protocol Visualizer (By antirez)](https://github.com/antirez/protoview)
+- Updated: [UART Terminal (By cool4uma)](https://github.com/cool4uma/UART_Terminal)
 
 <a name="release">
 
