@@ -15,14 +15,13 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="support"></a>
 
-- Keep Your Flipper Up To Date With [PATREON membership](https://www.patreon.com/RogueMaster)
-- [PATREON for compiled releases](https://www.patreon.com/RogueMaster) for nearly ALL updates. Patreon Releases sometimes multiple times a day. GitHub releases will occur weekly or with OFW version updates.
-- [Contact me on Patreon to RENAME your Flipper](https://www.patreon.com/RogueMaster/membership) I can do custom names and custom animation sets with your custom build provided for every Patreon release.
-- [:fire: PATREON ANIMATION BUILDS AVAILABLE](https://www.patreon.com/RogueMaster/membership): ALL, Anime+420, Anime+420+18, 420, 420+18, DBZ, HACKZ, MARIO, ONE PIECE, RM 18PLUS, RM SELECT, RM SELECT + 18PLUS, RM MINIMAL (default on GitHub), SAO, SCIENCE AND STOCK with all assets updated to look like stock.
 - Donations: BTC: `3MPQbKmGRCstg4FjnadfHa3woCT94JkR2a`
 - Donations: ETH: `roguemaster.eth` or `0xC32Ea488DBeCF95992A5C81BD411e56Bd418BC5f`
 
 <a name="latest">
+##CREDIT
+[Uber](https://github.com/UberguidoZ)
+
 
 ## Latest Updates - [PATREON: Latest Release RM0113-1852-0.75.1-48944d9](https://www.patreon.com/posts/77207944)
 
