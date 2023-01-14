@@ -19,7 +19,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Donations: ETH: `roguemaster.eth` or `0xC32Ea488DBeCF95992A5C81BD411e56Bd418BC5f`
 
 <a name="latest">
-##CREDIT
+## CREDIT
 [Uber](https://github.com/UberguidoZ)
 
 
