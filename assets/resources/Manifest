@@ -1,5 +1,5 @@
 V:0
-T:1673645757
+T:1673659601
 D:apps
 D:apps_data
 D:badusb
@@ -91,7 +91,6 @@ F:8cb3a87abe436c5a87f8d44ff2fc7311:4396:apps/Misc/ExtendRange.fap
 F:2feb848884617c451503636290874451:5400:apps/Misc/HEX_Viewer.fap
 F:f17b2178aa06a7a84e04503f2ca3e7e9:3000:apps/Misc/MouseJiggler.fap
 F:48b60a918f601e83ee72a6f24600577d:12392:apps/Misc/Multi_Converter.fap
-F:3e3f42f6578a7d38a9838e7b25604783:2312:apps/Misc/Orgasmotron.fap
 F:3b8d8bff47fb5fe339e331ae88b58871:2592:apps/Misc/Paint.fap
 F:2eeb035b28b704b2f1c2933c49669730:4240:apps/Misc/Rubiks_Cube_Scrambler.fap
 F:9a3fef416ac76c0e49f089abf12cb157:3468:apps/Misc/TRex_Runner.fap
@@ -582,11 +581,11 @@ F:f60b1a52ac01b0775fd7b95f1140486d:121:ibtnfuzzer/example_uids_metakom.txt
 D:infrared/assets
 D:infrared/ir_remote
 F:9ab235cd80d35a984536040aab0fe9a6:1655:infrared/Roku.ir
-F:b92e0621cd0f293dbccaedfa1c182e5d:223526:infrared/assets/ac.ir
-F:188d3561c88a3f3571b0e6fef2503ffa:80446:infrared/assets/audio.ir
-F:fa1599d37087b82485b4d30f6df00015:123619:infrared/assets/fans.ir
-F:a60c7836093566031ea7b09b601cd2c0:24739:infrared/assets/projectors.ir
-F:4c88b086e2f8dc7e48dd719a9b19049e:61899:infrared/assets/tv.ir
+F:711153906146a236918323aae30c3522:225306:infrared/assets/ac.ir
+F:e397c4171e14f8f328a408669ab59d89:71326:infrared/assets/audio.ir
+F:5272f22a0902a8151587fdc7179e3ff6:123621:infrared/assets/fans.ir
+F:9c3c46ccf0487271ba178bf3f8e37410:26304:infrared/assets/projectors.ir
+F:02b3463d21f37cff9339be9a8c6e68a4:25582:infrared/assets/tv.ir
 F:5751a3d27f85ab27f33feed39f8bd1c6:164:infrared/ir_remote/Roku.txt
 D:lfrfid/rfidfuzzer
 F:93242e8f59b3d390044b999d519f3a47:137:lfrfid/rfidfuzzer/example_uids_em4100.txt
@@ -807,19 +806,75 @@ D:subghz/unirf
 D:subghz/Customer_Assistance_Buttons/CVS
 D:subghz/Customer_Assistance_Buttons/Lowes
 D:subghz/Customer_Assistance_Buttons/Walgreens
-F:9fd5a49453d017abe951458b51ec4c35:16904:subghz/Customer_Assistance_Buttons/CVS/CVS_14.sub
-F:a2e3db985a8e89c1941f3729f920c3c2:4463:subghz/Customer_Assistance_Buttons/CVS/CVS_Dental.sub
-F:f742d82b14e4d5f9a7f81448054e00be:14905:subghz/Customer_Assistance_Buttons/CVS/CVS_Shaving.sub
-F:db975adfda3bb181263af51af1f0fe25:4355:subghz/Customer_Assistance_Buttons/CVS/CVS_Stomach.sub
+F:32edf0e1f32f94d1f4d4157c8c21142b:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Eight_ENGLISH.sub
+F:5fb0edc70722faf9ad85e3c41702dbc4:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Eighteen_ENGLISH.sub
+F:2a757546cb0cc01f77c37d74cc614fbd:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Eleven_ENGLISH.sub
+F:f2f99fdf567a10fcac7ae82b35a51d38:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Fifteen_ENGLISH.sub
+F:e602f9c20204a6c4cb2ee2cdf63d54ac:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Five_ENGLISH.sub
+F:7a5bb545c0f65f19696a3eac7f397eeb:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Four_ENGLISH.sub
+F:fb9814a95e3e8eaf7171f2993ab01a85:3822:subghz/Customer_Assistance_Buttons/CVS/Aisle_Fourteen_ENGLISH.sub
+F:ce859ab39730eac1868b15941e2e6e44:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Nineteen_ENGLISH.sub
+F:ea94abf2fa0561d23be6cb25bbc0a219:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_One_ENGLISH.sub
+F:f5bbc654e5562e6a3e4272f644cfac72:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Seven_ENGLISH.sub
+F:234db4395e934e29b2087492595dc1e6:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Seventeen_ENGLISH.sub
+F:47faa11fbfcefa7d3364acf5aa3d45c7:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Six_ENGLISH.sub
+F:6c358711b0501ddc58222df4227c3ecb:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Sixteen_ENGLISH.sub
+F:9b0c29fd7a4c61ed3b2501a2ca03b203:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Ten_ENGLISH.sub
+F:6074b74e90e5933c9a4839615a893cde:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Thirteen_ENGLISH.sub
+F:78da7de88dcdd7f1856ce7301976bb77:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Three_ENGLISH.sub
+F:c48f54572cacb8c4a3ced2ca76e40cba:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Twelve_ENGLISH.sub
+F:9004f8fdf3a3916d44eef549a3ec2dd2:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Twenty_ENGLISH.sub
+F:7e4af2830ed9f06bd104c571e85e01f3:4271:subghz/Customer_Assistance_Buttons/CVS/Aisle_Two_ENGLISH.sub
+F:9dcfa8b8a216ce8b05a03453ec71ca8e:4271:subghz/Customer_Assistance_Buttons/CVS/Allergy_Department_ENGLISH.sub
+F:7a868792bc8b502f52c4e1d1742d1fce:4271:subghz/Customer_Assistance_Buttons/CVS/Baby_Formula_ENGLISH.sub
+F:276e07665e09c75622cb68f3a62c2fe3:4271:subghz/Customer_Assistance_Buttons/CVS/Batteries_ENGLISH.sub
+F:28f980ea9d484cf7c621db443cddb4d6:4271:subghz/Customer_Assistance_Buttons/CVS/Body_Wash_ENGLISH.sub
+F:2fcba0719d1b531d7d1b94829de3f073:4271:subghz/Customer_Assistance_Buttons/CVS/Cashier_to_the_Front_of_the_Store_ENGLISH.sub
+F:6f6715c957e90945d185f466a781d708:4271:subghz/Customer_Assistance_Buttons/CVS/Clinic_1_Medical_Alert_to_the_ENGLISH.sub
+F:b969aa103a8585ac78d941484daadd8e:4271:subghz/Customer_Assistance_Buttons/CVS/Cosmetics_Department_ENGLISH.sub
+F:702368678e1b3e4fb4e7b85a4e1f50fb:4271:subghz/Customer_Assistance_Buttons/CVS/Cough_Cold_ENGLISH.sub
+F:57f9c919049a0481892a7fa9f741d893:4271:subghz/Customer_Assistance_Buttons/CVS/Customer_Service_Scan_All_Aisles_ENGLISH.sub
+F:7cd1fcf8ecbd5f12ee09f47842173aec:4271:subghz/Customer_Assistance_Buttons/CVS/Dental_Care_ENGLISH.sub
+F:b0f074e2042c70e118fc31840e9b34f9:4271:subghz/Customer_Assistance_Buttons/CVS/Deodorants_ENGLISH.sub
+F:b3d987d02ee5c62ef6fa27a767b21781:4271:subghz/Customer_Assistance_Buttons/CVS/Diet_and_Nutrition_Department_ENGLISH.sub
+F:4b1413145801a794eb4c7593eae7b270:4271:subghz/Customer_Assistance_Buttons/CVS/Ding_1_ENGLISH.sub
+F:eb4e4800a4d08b7a30e3bf9eb6287138:4271:subghz/Customer_Assistance_Buttons/CVS/Electric_Razors_ENGLISH.sub
+F:403f9c08c6884ad073c3e607614861dd:4271:subghz/Customer_Assistance_Buttons/CVS/Electronics_ENGLISH.sub
+F:007b29198786547758c3cdfce01e7011:4271:subghz/Customer_Assistance_Buttons/CVS/Eye_Care_Department_ENGLISH.sub
+F:8db40d6174836f7ad00fdb18d460e18e:4271:subghz/Customer_Assistance_Buttons/CVS/Family_Planning_ENGLISH.sub
+F:c5e05c60c4312dde688a3776c6bc108a:4271:subghz/Customer_Assistance_Buttons/CVS/Film_Department_ENGLISH.sub
+F:fe5422021fb3a19cc9db3b0cde6e61a6:4271:subghz/Customer_Assistance_Buttons/CVS/First_Aid_Department_ENGLISH.sub
+F:f1aace49bef5f85f7e8143ede6d92a27:4271:subghz/Customer_Assistance_Buttons/CVS/Foot_Care_Department_ENGLISH.sub
+F:e2a246c2f2376d68645287d36ca46bfd:4271:subghz/Customer_Assistance_Buttons/CVS/Hair-Care_Department_ENGLISH.sub
+F:4f0d10dbd5d135b19699db3b5a2c6277:4271:subghz/Customer_Assistance_Buttons/CVS/Health_Department_OTC_Health_ENGLISH.sub
+F:71dcdba665ffd93799b5fdcd0ff804eb:4271:subghz/Customer_Assistance_Buttons/CVS/Liquor_Department_ENGLISH.sub
+F:2f1874b714b4621acab8ce37e7ad6518:4271:subghz/Customer_Assistance_Buttons/CVS/Manager_to_the_Front_of_the_Store_ENGLISH.sub
+F:39e67a4a9a52dcff58bb41d204a0c096:4271:subghz/Customer_Assistance_Buttons/CVS/Pain_Reliever_Department_ENGLISH.sub
+F:a05fd1f55a69512d3ad62dc835b15dcb:4192:subghz/Customer_Assistance_Buttons/CVS/Pre-Recorded_Video_Department_ENGLISH.sub
+F:5b622f2f23f61377657a2e4227f0d2ae:4271:subghz/Customer_Assistance_Buttons/CVS/Recordable_Media_Department_ENGLISH.sub
+F:10c73f59d7f3ddee0d0a38748494b55f:4271:subghz/Customer_Assistance_Buttons/CVS/Security_to_the_Front_of_the_Store_ENGLISH.sub
+F:ceb2c777ba31d882341423b390ff1cf8:3862:subghz/Customer_Assistance_Buttons/CVS/Skin_Care_Department_ENGLISH.sub
+F:a0c78b534cfe9b3ab1356840a832aacf:4271:subghz/Customer_Assistance_Buttons/CVS/Small_Appliances_ENGLISH.sub
+F:c542cd76e275e78798b1033e451cd463:4271:subghz/Customer_Assistance_Buttons/CVS/Special_Ding_ENGLISH.sub
+F:c2096261a52c36ae5b0334a22bc73ef8:4271:subghz/Customer_Assistance_Buttons/CVS/Stationery_ENGLISH.sub
+F:94667eba8ade73c72035a258bf16a7c0:4271:subghz/Customer_Assistance_Buttons/CVS/Stomach_Remedies_ENGLISH.sub
+F:6eeee77dfad84faf7e700cdf10df6819:4271:subghz/Customer_Assistance_Buttons/CVS/Telecommunications_Department_ENGLISH.sub
+F:3080ccd58b2cf3767570337cf43fd138:4271:subghz/Customer_Assistance_Buttons/CVS/Vitamin_Department_ENGLISH.sub
+F:c3f1b1feb3e2bfd47440a72ebc62dabd:4271:subghz/Customer_Assistance_Buttons/CVS/the_Fragrance_Case_ENGLISH.sub
+F:b5d80cb72930a954d09b68083669d7f5:4271:subghz/Customer_Assistance_Buttons/CVS/the_Pharmacy_ENGLISH.sub
+F:e738667fedd3cf2fac025afa9117c277:4271:subghz/Customer_Assistance_Buttons/CVS/the_Photo_Lab_ENGLISH.sub
 F:89648075c62922ba440552022bdb59cc:6340:subghz/Customer_Assistance_Buttons/Lowes/Appliance_Desk.sub
 F:45e20ffd6796341647453040d6cb079a:5218:subghz/Customer_Assistance_Buttons/Lowes/Blind_Cutting.sub
 F:8983e9892b35ff4baa2417aa855750dd:8332:subghz/Customer_Assistance_Buttons/Lowes/Electrical.sub
 F:75971c2ddfe5c3bdcb207a39eeba6802:10245:subghz/Customer_Assistance_Buttons/Lowes/Flooring_Desk.sub
 F:f0365189744f77df58b1766baa0acfb3:6339:subghz/Customer_Assistance_Buttons/Lowes/Outdoor_Power_Equipment_Desk.sub
 F:c7d00d314b9fed73bca7b13e4f2ac407:6101:subghz/Customer_Assistance_Buttons/Lowes/Packaged_Rugs.sub
+F:1a06658a1431e22559e2cf5062c6d855:62669:subghz/Customer_Assistance_Buttons/Walgreens/WalgreensDental.sub
+F:8e3b57b7f6f063325a1a5cb4912b25b3:25725:subghz/Customer_Assistance_Buttons/Walgreens/WalgreensPain_sleep.sub
 F:25264c450f4691257851ee52365383bd:5214:subghz/Customer_Assistance_Buttons/Walgreens/Walgreens_Cough.sub
 F:a42c2b0804eefdea42b93216686c8fef:5333:subghz/Customer_Assistance_Buttons/Walgreens/Walgreens_Skincare.sub
 F:0118ed355025e042bcc64c1842e430cb:5300:subghz/Customer_Assistance_Buttons/Walgreens/Walgreens_Vitamin.sub
+F:0528dc396909e6932a0784fd0d6ec3ec:56001:subghz/Customer_Assistance_Buttons/Walgreens/Walgreens__Famplan.sub
 F:96e391b978a8536722ae63c2c2acaa3e:94096:subghz/Gas_Sign/Back_gas.sub
 F:ed78589a56473981f6d6f95d32c173d4:86882:subghz/Gas_Sign/Down_gas.sub
 F:47edb35944c388baf5363449f58d750d:8679:subghz/Gas_Sign/Edit_mode.sub
@@ -849,9 +904,9 @@ F:653bd8d349055a41e1152e557d4a52d3:202:subghz/assets/nice_flor_s
 F:f1ea57be47f7c5a64637d840b1044ec6:1260:subghz/assets/setting_user.example
 F:45219413c00615669798f98d559033ff:1587:subghz/assets/setting_user.pocsag
 F:cecf8bf6f27172ff684e5db7e8cf63a0:3414:subghz/assets/setting_user.txt
-F:18802bb7595c0bd98dedec1c460a321e:1011:subghz/playlist/CVS_Walgreens_Lowes.txt
+F:2b0c74b5d0abcc54f3a3a6ef08850bbc:1013:subghz/playlist/CVS_Walgreens_Lowes.txt
 F:2132f1809ce9443c2eb6b26aaf8ec22b:129:subghz/playlist/example_tesla.txt
-F:8e71b2c70daa78b3123d5bf3378a240e:501:subghz/unirf/CVS_Walgreens.txt
+F:6937aa69de9356aa4b2a67d8c56c4dc5:544:subghz/unirf/CVS_Walgreens.txt
 F:28c57a03bcaa96e13301421159f80dd9:256:subghz/unirf/Gas_Sign_Edit.txt
 F:5d536d8be1010fbbff4fcda3d8a02659:419:subghz/unirf/Ridin_Dirty.txt
 F:193f5e3a68cb351dcbd8eeb91825b476:410:subghz/unirf/Tesla_Handicap.txt
@@ -859,29 +914,6 @@ F:ce3a0d17d643925d5c51c9f569641c76:269:subghz/unirf/touchtunes_brute_map.txt
 D:u2f/assets
 F:7e11e688e39034bbb9d88410044795e1:365:u2f/assets/cert.der
 F:f60b88c20ed479ed9684e249f7134618:264:u2f/assets/cert_key.u2f
-D:wav_player/Playboy Carti
 F:4be2589cd64bb509559e51bf9a96c9b1:17175:wav_player/CartKeyLock78.wav
 F:549185d27c51012d142493512a5475cc:18324:wav_player/CartKeyUnlock78.wav
 F:a9a90a7e7e60e3add602929e5b38e83b:94508:wav_player/sonicscrewdriver.wav
-F:ab6f23ff6f65fbf9ad6f063ba976fe8c:14724468:wav_player/Playboy Carti/Beno!.wav
-F:6f3a2d611468838f8909a9690192ef28:18987052:wav_player/Playboy Carti/Control.wav
-F:92076d3f111f2d95eb6d0ad7629394e0:12604580:wav_player/Playboy Carti/Die4Guy.wav
-F:003fadd3e45d7268c163ac3c3c21515d:11496708:wav_player/Playboy Carti/Go2DaMoon.wav
-F:3e6561802c09808d3d79d5377a0d782d:12986872:wav_player/Playboy Carti/ILoveUIHateU.wav
-F:934d618d2563104d6c4e532112df7aa0:8965548:wav_player/Playboy Carti/Jump_Out_The_House.wav
-F:a1aae00ed390a9a3bbab7636fe2fc23b:17936624:wav_player/Playboy Carti/King_Vamp.wav
-F:96c1cf456f00c1223281be16e1d5a437:11380794:wav_player/Playboy Carti/Meh.wav
-F:03a2bc5d6600fb1062b9cb94d45dcc61:11167914:wav_player/Playboy Carti/New_N3on.wav
-F:9cee4065cd15079abe556c7c8243d6d1:8618920:wav_player/Playboy Carti/New_Tank.wav
-F:861a33740faf26812a4f4e89d58c573f:8500778:wav_player/Playboy Carti/Nosl33p.wav
-F:455510ebe83d036597b3f50ba470e565:12514300:wav_player/Playboy Carti/Not_Playing.wav
-F:19e40a305547f647e93c82e89a7fd29f:9844934:wav_player/Playboy Carti/On_That_Time.wav
-F:12e112675ee0cce30810ae7f32d06184:15960514:wav_player/Playboy Carti/Over.wav
-F:c959524854e5581f2c86b8c17a5c59fc:11258194:wav_player/Playboy Carti/Place.wav
-F:9ec294bacb149b1a597ac0cba79162fa:22056030:wav_player/Playboy Carti/Punk_Monk.wav
-F:a4e05ce2800102b4c3564561d3cb7d64:18589754:wav_player/Playboy Carti/Rockstar_Made.wav
-F:472efabe2cf61e66853d1f5059d68874:18550746:wav_player/Playboy Carti/Sky.wav
-F:da80eec31c24fb61dad432df517036d2:15808934:wav_player/Playboy Carti/Slay3r.wav
-F:864b17ea17c146217e1afb1d5f5fdd34:21029522:wav_player/Playboy Carti/Stop_Breathing.wav
-F:0d60314f0934afa0fffcfd6b2188310a:19777874:wav_player/Playboy Carti/TeenX.wav
-F:f0eacf272c417f2f52282019e93907b1:11921356:wav_player/Playboy Carti/Vamp_Anthem.wav
