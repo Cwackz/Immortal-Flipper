@@ -23,7 +23,7 @@ This software is for experimental purposes only and is not meant for any illegal
 [Uber](https://github.com/UberguidoZ)
 
 
-## Latest Updates - [PATREON: Latest Release RM0114-1253-0.75.1-b873a59](https://www.patreon.com/posts/77235330) 
+## Latest Updates - [PATREON: Latest Release RM0115-0415-0.75.1-dd11c37](https://www.patreon.com/posts/77259895) 
 
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md) and in [commits](https://github.com/DarkFlippers/unleashed-firmware/commits/dev): `2023-01-13 18:30 EST`
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2023-01-13 18:30 EST`
@@ -37,9 +37,12 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated Universal IR Assets thanks to [amec0e](https://github.com/DarkFlippers/unleashed-firmware/pull/282)
 - Updated D1g1talRain animation weighting for more customization
 - Updated: [Protocol Visualizer (By antirez)](https://github.com/antirez/protoview)
-- Updated: [Temp Sensors Reader (By quen0n)](https://github.com/quen0n/Unitemp-Flipper-Zero-Plugin) `Req: BMP180/BMP280/BME280/BME680/DHT11/DHT22(AM2302)/AM2301/AM2320/HTU2XD/HTU21x/HDC1080`
 - Added: [Calculator "2" (By theCow61)](https://github.com/theCow61/calculator)
 - Updated: [TAMA P1 (By GMMan)](https://github.com/GMMan/flipperzero-firmware/tree/tama-p1) requires [this rom](https://tinyurl.com/tamap1) IN `tama_p1` on SD as `rom.bin` to make it work. Unpack tama.zip, rename tama.b to rom.bin. [Save State (By DroomOne)](https://github.com/DroomOne/flipperzero-tamagotch-p1)
+- Removed BadUSB Install qFlipper Script to avoid Anti Virus False Positive Flags
+- Fixed SubGHz Chat Spacing for Flipper Screen (Thanks to @qqMajikpp)
+- Updated: [Temp Sensors Reader (By quen0n)](https://github.com/quen0n/Unitemp-Flipper-Zero-Plugin) `Req: BMP180/BMP280/BME280/BME680/DHT11/DHT22(AM2302)/AM2301/AM2320/HTU2XD/HTU21x/HDC1080`
+- [New battery display (Bar %) (Thanks to Fasjeit)](https://github.com/DarkFlippers/unleashed-firmware/pull/278)
 
 <a name="release">
 
