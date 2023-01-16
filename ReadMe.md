@@ -23,7 +23,7 @@ This software is for experimental purposes only and is not meant for any illegal
 [Uber](https://github.com/UberguidoZ)
 
 
-## Latest Updates - [PATREON: Latest Release RM0115-1546-0.75.1-55e9f04](https://www.patreon.com/posts/77281149) 
+## Latest Updates - [PATREON: Latest Release RM0116-0733-0.75.1-7983c56](https://www.patreon.com/posts/77308965) 
 
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md) and in [commits](https://github.com/DarkFlippers/unleashed-firmware/commits/dev): `2023-01-13 18:30 EST`
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2023-01-13 18:30 EST`
@@ -50,6 +50,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Added: [NFC: add MIFARE MINI support #2307 (By giacomoferretti)](https://github.com/flipperdevices/flipperzero-firmware/pull/2307)
 - Added: [NFC Magic: Add support for Gen4 "ultimate card" in Magic app #2238 (By nullableVoidPtr)](https://github.com/flipperdevices/flipperzero-firmware/pull/2238)
 - Updated: [Calculator "2" (By theCow61)](https://github.com/theCow61/calculator)
+- Reverted: Bluetooth: Works as an AirTag [(Thanks to culturally)](https://github.com/culturally/flipper-zero-airtag)
 
 <a name="release">
 
