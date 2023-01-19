@@ -19,6 +19,7 @@ static bool decode(uint8_t* bits, uint32_t numbytes, uint32_t numbits, ProtoView
     if(off == BITMAP_SEEK_NOT_FOUND) return false;
     FURI_LOG_E(TAG, "Renault TPMS preamble+sync found");
 
+    info->start_off = off;
     off += sync_len; /* Skip preamble + sync. */
 
     uint8_t raw[10];
@@ -35,6 +36,8 @@ static bool decode(uint8_t* bits, uint32_t numbytes, uint32_t numbits, ProtoView
     for(int j = 1; j < 10; j++) crc ^= raw[j];
     if(crc != 0) return false; /* Require sane checksum. */
 
+    info->pulses_count = (off + 8 * 10 * 2) - info->start_off;
+
     int repeat = raw[5] & 0xf;
     float kpa = (float)raw[6] * 1.364;
     int temp = raw[7] - 50;
@@ -44,7 +47,7 @@ static bool decode(uint8_t* bits, uint32_t numbytes, uint32_t numbits, ProtoView
     snprintf(
         info->raw,
         sizeof(info->raw),
-        "%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+        "%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
         raw[0],
         raw[1],
         raw[2],
@@ -54,8 +57,7 @@ static bool decode(uint8_t* bits, uint32_t numbytes, uint32_t numbits, ProtoView
         raw[6],
         raw[7],
         raw[8],
-        raw[9],
-        raw[10]);
+        raw[9]);
     snprintf(
         info->info1,
         sizeof(info->info1),
