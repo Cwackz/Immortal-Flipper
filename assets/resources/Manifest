@@ -1,5 +1,5 @@
 V:0
-T:1673861581
+T:1673940876
 D:apps
 D:apps_data
 D:badusb
@@ -12,6 +12,7 @@ D:music_player
 D:nfc
 D:picopass
 D:subghz
+D:tama_p1
 D:u2f
 D:wav_player
 D:apps/GPIO
@@ -65,7 +66,7 @@ F:de02b7f6daac0cebfcca2acb7671b1c8:3852:apps/Games/Pong.fap
 F:0935667e2ff500409d0dedb28d8b052f:12860:apps/Games/Scorched_Tanks.fap
 F:75c2a866e71355aef7f0c5e6679c638a:8204:apps/Games/Snake.fap
 F:26810c7d7c4c28d3fddcd26c536f5ab1:13580:apps/Games/Solitaire.fap
-F:fcd43b84fea3ab1664cfaa463909416d:41264:apps/Games/TAMA_P1.fap
+F:2c0f9845c62bbca22e3c18bd88d14d80:41184:apps/Games/TAMA_P1.fap
 F:bc4d8ef0f06544e4e37b352ff619bf58:13320:apps/Games/Tanks.fap
 F:452c3f560eaaf5773869dcb53d3512f5:5968:apps/Games/Tetris.fap
 F:f041c309e8612261423eaba4d236abf8:4660:apps/Games/TicTacToe.fap
@@ -85,7 +86,7 @@ F:33808d310069d681078b223d0caa9d9d:3476:apps/Misc/BT_Serial.fap
 F:92dded90635bca8348c33a9e1fbb8789:5160:apps/Misc/Barcode_Generator.fap
 F:dc57b29d493928fa706dd9fba5f3d236:3384:apps/Misc/Caesar_Cipher.fap
 F:16810a6392f085c3673e3ec38792f4a2:47200:apps/Misc/Calculator.fap
-F:7dc241c8cdc970bada7d8703b145329d:20672:apps/Misc/Calculator2.fap
+F:da16bb0a3825f9739b5d068c4720bac0:17904:apps/Misc/Calculator2.fap
 F:713b163bf75d5eb9c6bb1e5b1cb8307b:3280:apps/Misc/ClockV1.fap
 F:ef07312eddc76742693acdf07ef8b87f:2860:apps/Misc/Counter.fap
 F:8cb3a87abe436c5a87f8d44ff2fc7311:4396:apps/Misc/ExtendRange.fap
@@ -116,7 +117,7 @@ F:32f98eff1981acec0841ca46d9eeaf6d:7288:apps/Music/USB_Midi.fap
 F:7cf338366e00e060372ae2e3908aee73:10424:apps/Music/WAV_Player.fap
 F:5e4dbdeb795a0f5082bf727af79940d3:10376:apps/Music/Zero_Tracker.fap
 F:12b6777a036bfa6072d3ef2f47ada08e:27096:apps/Tools/Bluetooth_Remote.fap
-F:1a6bc7e7819e15d726a58b34574ddf4f:6688:apps/Tools/CLIGUI.fap
+F:15f8d1d5a2205e90689e1220b392a64c:6736:apps/Tools/CLIGUI.fap
 F:0083b1c10075169c8f746cfcd2667bae:5072:apps/Tools/Count_Down_Timer.fap
 F:d51ea4bf9493852c13916e71d1d91921:38072:apps/Tools/DAP_Link.fap
 F:7e24368728c4d436354d9204cb6d14dc:9684:apps/Tools/DCF77.fap
@@ -125,7 +126,7 @@ F:2ff4f024079b1798fde92c62669cdab7:6316:apps/Tools/DolphinBackup.fap
 F:1139eca81c75d227b398441281e21750:5776:apps/Tools/DolphinRestorer.fap
 F:cacdb5a9fe8e5bcaed55d0eaa5c21648:16080:apps/Tools/IBtn_Fuzzer.fap
 F:7f28fa836864addfdb73140307e6c7a1:13444:apps/Tools/IR_Remote.fap
-F:e0a39169e4f09dc974bc804cdc081b19:28944:apps/Tools/NFC_Magic.fap
+F:059109100a5e5c0d5fc924a05cd8363f:28932:apps/Tools/NFC_Magic.fap
 F:7543524df7ddf215e498a41fda990931:11188:apps/Tools/NameChanger.fap
 F:7fd83ba795ea8e07fd242078de1b95d3:33924:apps/Tools/POCSAG_Pager.fap
 F:3de0180da25c7b73b499bab9495f77ae:5216:apps/Tools/Password_Generator.fap
@@ -139,7 +140,7 @@ F:c99e0c2c29e9a46e678b3377fbab76ec:10612:apps/Tools/Spectrum_Analyzer.fap
 F:05f42f098fcd748a7e95b39a95464973:44712:apps/Tools/SubGHz_Bruteforcer.fap
 F:407c18ab4cb1c52a1b42026770a417d4:12728:apps/Tools/SubGHz_Playlist.fap
 F:87251ca310fea8e4de7eb7072a488605:26692:apps/Tools/USB_Remote.fap
-F:8b1496368cb2e59f835b173c4be9199e:197252:apps/Tools/VB_Migrate.fap
+F:d504e948b807c4ac9868714c5268d956:197252:apps/Tools/VB_Migrate.fap
 F:f8e56046d5982f70e9909028820c651f:67672:apps/Tools/Weather_Station.fap
 D:apps_data/nrf24scan
 F:5ba332724041db57f826d46116e9dea3:59:apps_data/nrf24scan/addr-WCO1.txt
@@ -151,6 +152,7 @@ F:fe8b78f70ee3c6b824ea44284bbddc17:1751:badusb/GoodUSB.txt
 F:89a2817884d89629dee45ae8b49664ec:1007:badusb/Goose.txt
 F:b89e5ecc0a30e290f00456848655b847:527:badusb/Hey_Everybody.txt
 F:b7e334ad2ad4fff4980b563714884c4c:948:badusb/JumpScare.txt
+F:77f5896c49f66abdcfac0868c80cada5:5752:badusb/Kiosk Evasion Bruteforce.txt
 F:315b1dc44fa1dbfd527602ebd95ec705:548:badusb/OSX_Rickroll.txt
 F:0cac8edab366bd7956d3b8ed3cd4e49f:7120:badusb/RR_ASCII_Win.txt
 F:047a4c0c9054bcd5fd6fd8818461dd14:397:badusb/RickRoll Max Vol.txt
@@ -924,6 +926,7 @@ F:28c57a03bcaa96e13301421159f80dd9:256:subghz/unirf/Gas_Sign_Edit.txt
 F:5d536d8be1010fbbff4fcda3d8a02659:419:subghz/unirf/Ridin_Dirty.txt
 F:193f5e3a68cb351dcbd8eeb91825b476:410:subghz/unirf/Tesla_Handicap.txt
 F:ce3a0d17d643925d5c51c9f569641c76:269:subghz/unirf/touchtunes_brute_map.txt
+F:3fce172403c27274e59723bbb9f6d8e9:12288:tama_p1/rom.bin
 D:u2f/assets
 F:7e11e688e39034bbb9d88410044795e1:365:u2f/assets/cert.der
 F:f60b88c20ed479ed9684e249f7134618:264:u2f/assets/cert_key.u2f
