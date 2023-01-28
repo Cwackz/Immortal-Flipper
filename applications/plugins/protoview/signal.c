@@ -6,6 +6,43 @@
 bool decode_signal(RawSamplesBuffer* s, uint64_t len, ProtoViewMsgInfo* info);
 
 /* =============================================================================
+ * Protocols table.
+ *
+ * Supported protocols go here, with the relevant implementation inside
+ * protocols/<name>.c
+ * ===========================================================================*/
+
+extern ProtoViewDecoder Oregon2Decoder;
+extern ProtoViewDecoder B4B1Decoder;
+extern ProtoViewDecoder RenaultTPMSDecoder;
+extern ProtoViewDecoder ToyotaTPMSDecoder;
+extern ProtoViewDecoder SchraderTPMSDecoder;
+extern ProtoViewDecoder SchraderEG53MA4TPMSDecoder;
+extern ProtoViewDecoder CitroenTPMSDecoder;
+extern ProtoViewDecoder FordTPMSDecoder;
+extern ProtoViewDecoder KeeloqDecoder;
+extern ProtoViewDecoder ProtoViewChatDecoder;
+extern ProtoViewDecoder UnknownDecoder;
+
+ProtoViewDecoder* Decoders[] = {
+    &Oregon2Decoder, /* Oregon sensors v2.1 protocol. */
+    &B4B1Decoder, /* PT, SC, ... 24 bits remotes. */
+    &RenaultTPMSDecoder, /* Renault TPMS. */
+    &ToyotaTPMSDecoder, /* Toyota TPMS. */
+    &SchraderTPMSDecoder, /* Schrader TPMS. */
+    &SchraderEG53MA4TPMSDecoder, /* Schrader EG53MA4 TPMS. */
+    &CitroenTPMSDecoder, /* Citroen TPMS. */
+    &FordTPMSDecoder, /* Ford TPMS. */
+    &KeeloqDecoder, /* Keeloq remote. */
+    &ProtoViewChatDecoder, /* Protoview simple text messages. */
+
+    /* Warning: the following decoder must stay at the end of the
+     * list. Otherwise would detect most signals and prevent the actaul
+     * decoders from handling them. */
+    &UnknownDecoder, /* General protocol detector. */
+    NULL};
+
+/* =============================================================================
  * Raw signal detection
  * ===========================================================================*/
 
@@ -55,7 +92,7 @@ uint32_t search_coherent_signal(RawSamplesBuffer* s, uint32_t idx, uint32_t min_
 
     uint32_t len = 0; /* Observed len of coherent samples. */
     s->short_pulse_dur = 0;
-    for(uint32_t j = idx; j < idx + 500; j++) {
+    for(uint32_t j = idx; j < idx + s->total; j++) {
         bool level;
         uint32_t dur;
         raw_samples_get(s, j, &level, &dur);
@@ -184,8 +221,11 @@ void scan_for_signal(ProtoViewApp* app, RawSamplesBuffer* source, uint32_t min_d
             /* Accept this signal as the new signal if either it's longer
              * than the previous undecoded one, or the previous one was
              * unknown and this is decoded. */
-            if((thislen > app->signal_bestlen && app->signal_decoded == false) ||
-               (app->signal_decoded == false && decoded)) {
+            bool oldsignal_not_decoded = app->signal_decoded == false ||
+                                         app->msg_info->decoder == &UnknownDecoder;
+
+            if(oldsignal_not_decoded &&
+               (thislen > app->signal_bestlen || (decoded && info->decoder != &UnknownDecoder))) {
                 free_msg_info(app->msg_info);
                 app->msg_info = info;
                 app->signal_bestlen = thislen;
@@ -199,7 +239,7 @@ void scan_for_signal(ProtoViewApp* app, RawSamplesBuffer* source, uint32_t min_d
                     DetectedSamples->short_pulse_dur);
 
                 adjust_raw_view_scale(app, DetectedSamples->short_pulse_dur);
-                notify_signal_detected(app, decoded);
+                if(app->msg_info->decoder != &UnknownDecoder) notify_signal_detected(app, decoded);
             } else {
                 /* If the structure was not filled, discard it. Otherwise
                  * now the owner is app->msg_info. */
@@ -392,6 +432,33 @@ uint32_t bitmap_seek_bits(
     return BITMAP_SEEK_NOT_FOUND;
 }
 
+/* Compare bitmaps b1 and b2 (possibly overlapping or the same bitmap),
+ * at the specified offsets, for cmplen bits. Returns true if the
+ * exact same bits are found, otherwise false. */
+bool bitmap_match_bitmap(
+    uint8_t* b1,
+    uint32_t b1len,
+    uint32_t b1off,
+    uint8_t* b2,
+    uint32_t b2len,
+    uint32_t b2off,
+    uint32_t cmplen) {
+    for(uint32_t j = 0; j < cmplen; j++) {
+        bool bit1 = bitmap_get(b1, b1len, b1off + j);
+        bool bit2 = bitmap_get(b2, b2len, b2off + j);
+        if(bit1 != bit2) return false;
+    }
+    return true;
+}
+
+/* Convert 'len' bitmap bits of the bitmap 'bitmap' into a null terminated
+ * string, stored at 'dst', that must have space at least for len+1 bytes.
+ * The bits are extracted from the specified offset. */
+void bitmap_to_string(char* dst, uint8_t* b, uint32_t blen, uint32_t off, uint32_t len) {
+    for(uint32_t j = 0; j < len; j++) dst[j] = bitmap_get(b, blen, off + j) ? '1' : '0';
+    dst[len] = 0;
+}
+
 /* Set the pattern 'pat' into the bitmap 'b' of max length 'blen' bytes,
  * starting from the specified offset.
  *
@@ -508,7 +575,7 @@ uint32_t convert_from_line_code(
 }
 
 /* Convert the differential Manchester code to bits. This is similar to
- * convert_from_line_code() but specific for Manchester. The user must
+ * convert_from_line_code() but specific for diff-Manchester. The user must
  * supply the value of the previous symbol before this stream, since
  * in differential codings the next bits depend on the previous one.
  *
@@ -532,33 +599,6 @@ uint32_t convert_from_diff_manchester(
     }
     return decoded;
 }
-
-/* Supported protocols go here, with the relevant implementation inside
- * protocols/<name>.c */
-
-extern ProtoViewDecoder Oregon2Decoder;
-extern ProtoViewDecoder B4B1Decoder;
-extern ProtoViewDecoder RenaultTPMSDecoder;
-extern ProtoViewDecoder ToyotaTPMSDecoder;
-extern ProtoViewDecoder SchraderTPMSDecoder;
-extern ProtoViewDecoder SchraderEG53MA4TPMSDecoder;
-extern ProtoViewDecoder CitroenTPMSDecoder;
-extern ProtoViewDecoder FordTPMSDecoder;
-extern ProtoViewDecoder KeeloqDecoder;
-extern ProtoViewDecoder ProtoViewChatDecoder;
-
-ProtoViewDecoder* Decoders[] = {
-    &Oregon2Decoder, /* Oregon sensors v2.1 protocol. */
-    &B4B1Decoder, /* PT, SC, ... 24 bits remotes. */
-    &RenaultTPMSDecoder, /* Renault TPMS. */
-    &ToyotaTPMSDecoder, /* Toyota TPMS. */
-    &SchraderTPMSDecoder, /* Schrader TPMS. */
-    &SchraderEG53MA4TPMSDecoder, /* Schrader EG53MA4 TPMS. */
-    &CitroenTPMSDecoder, /* Citroen TPMS. */
-    &FordTPMSDecoder, /* Ford TPMS. */
-    &KeeloqDecoder, /* Keeloq remote. */
-    &ProtoViewChatDecoder, /* Protoview simple text messages. */
-    NULL};
 
 /* Free the message info and allocated data. */
 void free_msg_info(ProtoViewMsgInfo* i) {
