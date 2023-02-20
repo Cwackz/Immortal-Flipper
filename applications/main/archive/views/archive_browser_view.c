@@ -19,6 +19,7 @@ static const char* ArchiveTabNames[] = {
     [ArchiveTabBadUsb] = "Bad USB",
     [ArchiveTabU2f] = "U2F",
     [ArchiveTabApplications] = "Apps",
+    [ArchiveTabInternal] = "Internal",
     [ArchiveTabBrowser] = "Browser",
 };
 
@@ -397,15 +398,20 @@ static bool archive_view_input(InputEvent* event, void* context) {
 
     bool in_menu;
     bool move_fav_mode;
+    bool is_loading;
     with_view_model(
         browser->view,
         ArchiveBrowserViewModel * model,
         {
             in_menu = model->menu;
             move_fav_mode = model->move_fav;
+            is_loading = model->folder_loading || model->list_loading;
         },
         false);
 
+    if(is_loading) {
+        return false;
+    }
     if(in_menu) {
         if(event->type != InputTypeShort) {
             return true; // RETURN
@@ -481,7 +487,7 @@ static bool archive_view_input(InputEvent* event, void* context) {
                         model->scroll_counter = 0;
                     }
                 },
-                true);
+                false);
             archive_update_offset(browser);
         }
 

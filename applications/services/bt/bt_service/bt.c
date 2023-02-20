@@ -12,6 +12,7 @@
 #define BT_RPC_EVENT_DISCONNECTED (1UL << 1)
 #define BT_RPC_EVENT_ALL (BT_RPC_EVENT_BUFF_SENT | BT_RPC_EVENT_DISCONNECTED)
 
+/*
 static void bt_draw_statusbar_callback(Canvas* canvas, void* context) {
     furi_assert(context);
 
@@ -30,6 +31,7 @@ static ViewPort* bt_statusbar_view_port_alloc(Bt* bt) {
     view_port_enabled_set(statusbar_view_port, false);
     return statusbar_view_port;
 }
+*/
 
 static void bt_pin_code_view_port_draw_callback(Canvas* canvas, void* context) {
     furi_assert(context);
@@ -123,14 +125,14 @@ Bt* bt_alloc() {
     bt->message_queue = furi_message_queue_alloc(8, sizeof(BtMessage));
 
     // Setup statusbar view port
-    bt->statusbar_view_port = bt_statusbar_view_port_alloc(bt);
+    //bt->statusbar_view_port = bt_statusbar_view_port_alloc(bt);
     // Pin code view port
     bt->pin_code_view_port = bt_pin_code_view_port_alloc(bt);
     // Notification
     bt->notification = furi_record_open(RECORD_NOTIFICATION);
     // Gui
     bt->gui = furi_record_open(RECORD_GUI);
-    gui_add_view_port(bt->gui, bt->statusbar_view_port, GuiLayerStatusBarLeft);
+    //gui_add_view_port(bt->gui, bt->statusbar_view_port, GuiLayerStatusBarLeft);
     gui_add_view_port(bt->gui, bt->pin_code_view_port, GuiLayerFullscreen);
 
     // Dialogs
@@ -295,6 +297,7 @@ static void bt_on_key_storage_change_callback(uint8_t* addr, uint16_t size, void
         furi_message_queue_put(bt->message_queue, &message, FuriWaitForever) == FuriStatusOk);
 }
 
+/*
 static void bt_statusbar_update(Bt* bt) {
     if(bt->status == BtStatusAdvertising) {
         view_port_set_width(bt->statusbar_view_port, icon_get_width(&I_Bluetooth_Idle_5x8));
@@ -306,6 +309,7 @@ static void bt_statusbar_update(Bt* bt) {
         view_port_enabled_set(bt->statusbar_view_port, false);
     }
 }
+*/
 
 static void bt_show_warning(Bt* bt, const char* text) {
     dialog_message_set_text(bt->dialog_message, text, 64, 28, AlignCenter, AlignCenter);
@@ -411,7 +415,7 @@ int32_t bt_srv(void* p) {
             furi_message_queue_get(bt->message_queue, &message, FuriWaitForever) == FuriStatusOk);
         if(message.type == BtMessageTypeUpdateStatus) {
             // Update view ports
-            bt_statusbar_update(bt);
+            //bt_statusbar_update(bt);
             bt_pin_code_hide(bt);
             if(bt->status_changed_cb) {
                 bt->status_changed_cb(bt->status, bt->status_changed_ctx);

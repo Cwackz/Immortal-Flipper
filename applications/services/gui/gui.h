@@ -18,8 +18,11 @@ typedef enum {
 
     GuiLayerWindow, /**< Window layer, status bar is shown */
 
+    GuiLayerStatusBarTop, /**< Status bar top side layer */
     GuiLayerStatusBarLeft, /**< Status bar left-side layer, auto-layout */
+    GuiLayerStatusBarLeftSlim, /**< Status bar left-side layer, auto-layout */
     GuiLayerStatusBarRight, /**< Status bar right-side layer, auto-layout */
+    GuiLayerStatusBarRightSlim, /**< Status bar right-side layer, auto-layout */
 
     GuiLayerFullscreen, /**< Fullscreen layer, no status bar */
 
@@ -94,7 +97,7 @@ void gui_remove_framebuffer_callback(Gui* gui, GuiCanvasCommitCallback callback,
  * @param      gui       Gui instance
  * @return     size_t    size of frame buffer in bytes
  */
-size_t gui_get_framebuffer_size(Gui* gui);
+size_t gui_get_framebuffer_size(const Gui* gui);
 
 /** Set lockdown mode
  *

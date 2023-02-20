@@ -1,9 +1,12 @@
 ### New changes
-* SubGHz: **Somfy Keytis Encoder** and Somfy Telis fixes (PR #297 | by @assasinfil)
-* SubGHz: Change hopping frequency list to have only most used frequencies
-* SubGHz: Block usage of hopping with detect raw at same time (its efficiency is almost 0, it looses signals and all that you can capture is a micro part of end of the signal) (Detect raw also will be removed in a future (and replaced with more correct solution))
-* Plugins -> Updated **ProtoView** [(by antirez)](https://github.com/antirez/protoview)
-* Infrared: Update universal remote assets (by @amec0e) (PR #298)
+* SubGHz: **Nice ON2E (Nice One)** support (by @assasinfil | PR #335)
+* SubGHz: Remove 467.75 From freq analyzer since it has too much noise (Frequency is still can be used, just excluded from FA to avoid false detections)
+* Archive and FileBrowser: **Fixed more navigation issues** (by @Willy-JL | PR #334)
+* Plugins -> SubGHz Bruteforcer: Fix Linear Delta 3 repeats (now its more stable and we will be sure signal is received correctly)
+* Plugins: Updated TOTP (Authenticator) [(by akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
+* OFW: **Fix Cyfral & Metakom emulation (My temp fix removed and proper fix from OFW applied)**
+* OFW: BadUSB: disable CDC mode, USB mode switch fix
+* OFW: Updater visual fixes
 
 #### [🎲 Download latest extra apps pack](https://download-directory.github.io/?url=https://github.com/xMasterX/unleashed-extra-pack/tree/main/apps)
 
@@ -11,7 +14,7 @@
 
 [-> Download qFlipper (official link)](https://flipperzero.one/update)
 
-## Please support development of my project on Patreon, but also the Unleashed project with one of the listed methods below. Most the changes listed above have been added into RM.
+## Please support development of the project
 * Boosty: https://boosty.to/mmxdev
 * Ko-Fi: https://ko-fi.com/masterx
 * cloudtips (only RU payments accepted): https://pay.cloudtips.ru/p/7b3e9d65
@@ -25,7 +28,7 @@
 * XMR (Monero): `41xUz92suUu1u5Mu4qkrcs52gtfpu9rnZRdBpCJ244KRHf6xXSvVFevdf2cnjS7RAeYr5hn9MsEfxKoFDRSctFjG5fv1Mhn`
 * TON: `EQCOqcnYkvzOZUV_9bPE_8oTbOrOF03MnF-VcJyjisTZmpGf`
 
-### Thanks to Unleashed sponsors:
+### Thanks to our sponsors:
 callmezimbra, Quen0n, MERRON, grvpvl (lvpvrg), art_col, ThurstonWaffles, Moneron, UterGrooll, LUCFER, Northpirate, zloepuzo, T.Rat, Alexey B., ionelife, ...
 and all other great people who supported our project and me (xMasterX), thanks to you all!
 

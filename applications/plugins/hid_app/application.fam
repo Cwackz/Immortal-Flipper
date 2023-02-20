@@ -1,6 +1,6 @@
 App(
-    appid="USB_Remote",
-    name="USB Remote",
+    appid="USB_KeyboardMouse",
+    name="USB Keyboard & Mouse",
     apptype=FlipperAppType.PLUGIN,
     entry_point="hid_usb_app",
     stack_size=1 * 1024,

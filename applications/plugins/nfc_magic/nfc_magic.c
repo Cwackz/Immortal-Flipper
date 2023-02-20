@@ -48,9 +48,8 @@ NfcMagic* nfc_magic_alloc() {
         nfc_magic->view_dispatcher, nfc_magic_tick_event_callback, 100);
 
     // Nfc device
-    nfc_magic->dev = malloc(sizeof(NfcMagicDevice));
-    nfc_magic->source_dev = nfc_device_alloc();
-    furi_string_set(nfc_magic->source_dev->folder, NFC_APP_FOLDER);
+    nfc_magic->nfc_dev = nfc_device_alloc();
+    furi_string_set(nfc_magic->nfc_dev->folder, NFC_APP_FOLDER);
 
     // Open GUI record
     nfc_magic->gui = furi_record_open(RECORD_GUI);
@@ -82,13 +81,6 @@ NfcMagic* nfc_magic_alloc() {
         NfcMagicViewTextInput,
         text_input_get_view(nfc_magic->text_input));
 
-    // Byte Input
-    nfc_magic->byte_input = byte_input_alloc();
-    view_dispatcher_add_view(
-        nfc_magic->view_dispatcher,
-        NfcMagicViewByteInput,
-        byte_input_get_view(nfc_magic->byte_input));
-
     // Custom Widget
     nfc_magic->widget = widget_alloc();
     view_dispatcher_add_view(
@@ -101,8 +93,7 @@ void nfc_magic_free(NfcMagic* nfc_magic) {
     furi_assert(nfc_magic);
 
     // Nfc device
-    free(nfc_magic->dev);
-    nfc_device_free(nfc_magic->source_dev);
+    nfc_device_free(nfc_magic->nfc_dev);
 
     // Submenu
     view_dispatcher_remove_view(nfc_magic->view_dispatcher, NfcMagicViewMenu);
@@ -116,13 +107,9 @@ void nfc_magic_free(NfcMagic* nfc_magic) {
     view_dispatcher_remove_view(nfc_magic->view_dispatcher, NfcMagicViewLoading);
     loading_free(nfc_magic->loading);
 
-    // Text Input
+    // TextInput
     view_dispatcher_remove_view(nfc_magic->view_dispatcher, NfcMagicViewTextInput);
     text_input_free(nfc_magic->text_input);
-
-    // Byte Input
-    view_dispatcher_remove_view(nfc_magic->view_dispatcher, NfcMagicViewByteInput);
-    byte_input_free(nfc_magic->byte_input);
 
     // Custom Widget
     view_dispatcher_remove_view(nfc_magic->view_dispatcher, NfcMagicViewWidget);

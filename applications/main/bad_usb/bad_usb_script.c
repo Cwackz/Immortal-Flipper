@@ -123,8 +123,6 @@ static const char ducky_cmd_altchar[] = {"ALTCHAR "};
 static const char ducky_cmd_altstr_1[] = {"ALTSTRING "};
 static const char ducky_cmd_altstr_2[] = {"ALTCODE "};
 
-static const char ducky_cmd_lang[] = {"DUCKY_LANG"};
-
 static const uint8_t numpad_keys[10] = {
     HID_KEYPAD_0,
     HID_KEYPAD_1,
@@ -272,9 +270,6 @@ static int32_t
         return (0);
     } else if(strncmp(line_tmp, ducky_cmd_id, strlen(ducky_cmd_id)) == 0) {
         // ID - executed in ducky_script_preload
-        return (0);
-    } else if(strncmp(line_tmp, ducky_cmd_lang, strlen(ducky_cmd_lang)) == 0) {
-        // DUCKY_LANG - ignore command to retain compatibility with existing scripts
         return (0);
     } else if(strncmp(line_tmp, ducky_cmd_delay, strlen(ducky_cmd_delay)) == 0) {
         // DELAY
@@ -532,8 +527,6 @@ static int32_t bad_usb_worker(void* context) {
     BadUsbWorkerState worker_state = BadUsbStateInit;
     int32_t delay_val = 0;
 
-    FuriHalUsbInterface* usb_mode_prev = furi_hal_usb_get_config();
-
     FURI_LOG_I(WORKER_TAG, "Init");
     File* script_file = storage_file_alloc(furi_record_open(RECORD_STORAGE));
     bad_usb->line = furi_string_alloc();
@@ -686,8 +679,6 @@ static int32_t bad_usb_worker(void* context) {
 
     furi_hal_hid_set_state_callback(NULL, NULL);
 
-    furi_hal_usb_set_config(usb_mode_prev, NULL);
-
     storage_file_close(script_file);
     storage_file_free(script_file);
     furi_string_free(bad_usb->line);
@@ -738,7 +729,7 @@ void bad_usb_script_set_keyboard_layout(BadUsbScript* bad_usb, FuriString* layou
     }
 
     File* layout_file = storage_file_alloc(furi_record_open(RECORD_STORAGE));
-    if(!furi_string_empty(layout_path)) {
+    if(!furi_string_empty(layout_path)) { //-V1051
         if(storage_file_open(
                layout_file, furi_string_get_cstr(layout_path), FSAM_READ, FSOM_OPEN_EXISTING)) {
             uint16_t layout[128];

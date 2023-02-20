@@ -2,16 +2,24 @@
 #include <stdio.h>
 #include <string.h>
 
-void play_bit_rfid(uint8_t send_bit, MagSetting* setting);
-void play_bit_gpio(uint8_t send_bit, MagSetting* setting);
-bool play_bit(uint8_t send_bit, MagSetting* setting);
+void play_halfbit(bool value, MagSetting* setting);
+void play_track(uint8_t* bits_manchester, uint16_t n_bits, MagSetting* setting, bool reverse);
+
+void tx_init_rf(int hz);
 void tx_init_rfid();
-void tx_init_gpio();
-void tx_reset_rfid();
-void tx_reset_gpio();
+void tx_init_piezo();
 bool tx_init(MagSetting* setting);
-bool tx_reset(MagSetting* setting);
-void track_to_bits(uint8_t* bit_array, const char* track_data, uint8_t track_index);
+void tx_deinit_piezo();
+void tx_deinit_rfid();
+bool tx_deinit(MagSetting* setting);
+
+uint16_t add_bit(bool value, uint8_t* out, uint16_t count);
+uint16_t add_bit_manchester(bool value, uint8_t* out, uint16_t count);
+uint16_t mag_encode(
+    char* data,
+    uint8_t* out_manchester,
+    uint8_t* out_raw,
+    uint8_t track_bits,
+    uint8_t track_ascii_offset);
+void debug_mag_string(char* data, uint8_t track_bits, uint8_t track_ascii_offset);
 void mag_spoof(Mag* mag);
-void set_bit(uint8_t* b, uint32_t blen, uint32_t bitpos, bool val);
-bool get_bit(uint8_t* b, uint32_t blen, uint32_t bitpos);

@@ -7,7 +7,7 @@
 #include "migrations/config_migration_v1_to_v2.h"
 #include "migrations/config_migration_v2_to_v3.h"
 
-#define CONFIG_FILE_DIRECTORY_PATH EXT_PATH("authenticator")
+#define CONFIG_FILE_DIRECTORY_PATH EXT_PATH("apps_data/authenticator")
 #define CONFIG_FILE_PATH CONFIG_FILE_DIRECTORY_PATH "/totp.conf"
 #define CONFIG_FILE_BACKUP_PATH CONFIG_FILE_PATH ".backup"
 #define CONFIG_FILE_TEMP_PATH CONFIG_FILE_PATH ".tmp"
@@ -196,7 +196,7 @@ static TotpConfigFileOpenResult totp_open_config_file(Storage* storage, FlipperF
     return TotpConfigFileOpenSuccess;
 }
 
-TotpConfigFileUpdateResult
+static TotpConfigFileUpdateResult
     totp_config_file_save_new_token_i(FlipperFormat* file, const TokenInfo* token_info) {
     TotpConfigFileUpdateResult update_result;
     do {

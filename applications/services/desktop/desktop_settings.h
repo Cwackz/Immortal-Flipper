@@ -8,7 +8,7 @@
 #include <toolbox/saved_struct.h>
 #include <storage/storage.h>
 
-#define DESKTOP_SETTINGS_VER (6)
+#define DESKTOP_SETTINGS_VER (7)
 
 #define DESKTOP_SETTINGS_PATH INT_PATH(DESKTOP_SETTINGS_FILE_NAME)
 #define DESKTOP_SETTINGS_MAGIC (0x17)
@@ -42,6 +42,10 @@
 #define DISPLAY_BATTERY_RETRO_3 3
 #define DISPLAY_BATTERY_RETRO_5 4
 #define DISPLAY_BATTERY_BAR_PERCENT 5
+#define DISPLAY_BATTERY_NONE 6
+
+#define ICON_STYLE_STOCK 0
+#define ICON_STYLE_SLIM 1
 
 #define FAP_LOADER_APP_NAME "Applications"
 
@@ -64,4 +68,9 @@ typedef struct {
     uint8_t displayBatteryPercentage;
     bool is_dumbmode;
     uint8_t dummy_mode;
+    bool top_bar;
+    bool sdcard;
+    uint8_t icon_style;
+    bool bt_icon;
+    bool auto_lock_with_pin;
 } DesktopSettings;
