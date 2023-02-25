@@ -12,7 +12,7 @@
 #define MENU_ITEMS 4u
 #define UNLOCK_CNT 3
 
-#define SUBGHZ_RAW_TRESHOLD_MIN -90.0f
+#define SUBGHZ_RAW_THRESHOLD_MIN -90.0f
 
 typedef struct {
     FuriString* item_str;
@@ -80,10 +80,10 @@ void subghz_receiver_rssi(SubGhzViewReceiver* instance, float rssi) {
         instance->view,
         SubGhzViewReceiverModel * model,
         {
-            if(rssi < SUBGHZ_RAW_TRESHOLD_MIN) {
+            if(rssi < SUBGHZ_RAW_THRESHOLD_MIN) {
                 model->u_rssi = 0;
             } else {
-                model->u_rssi = (uint8_t)(rssi - SUBGHZ_RAW_TRESHOLD_MIN);
+                model->u_rssi = (uint8_t)(rssi - SUBGHZ_RAW_THRESHOLD_MIN);
             }
         },
         true);
@@ -427,6 +427,54 @@ bool subghz_view_receiver_input(InputEvent* event, void* context) {
             true);
     } else if(event->key == InputKeyLeft && event->type == InputTypeShort) {
         subghz_receiver->callback(SubGhzCustomEventViewReceiverConfig, subghz_receiver->context);
+    } else if(event->key == InputKeyRight && event->type == InputTypeLong) {
+        with_view_model(
+            subghz_receiver->view,
+            SubGhzViewReceiverModel * model,
+            {
+                if(model->history_item != 0) {
+                    SubGhzReceiverMenuItemArray_it_t it;
+                    SubGhzReceiverMenuItem* target_item =
+                        SubGhzReceiverMenuItemArray_get(model->history->data, model->idx);
+                    SubGhzReceiverMenuItemArray_it_last(it, model->history->data);
+                    while(!SubGhzReceiverMenuItemArray_end_p(it)) {
+                        SubGhzReceiverMenuItem* item = SubGhzReceiverMenuItemArray_ref(it);
+
+                        if(strcmp(
+                               furi_string_get_cstr(item->item_str),
+                               furi_string_get_cstr(target_item->item_str)) == 0) {
+                            furi_string_free(item->item_str);
+                            item->type = 0;
+                            SubGhzReceiverMenuItemArray_remove(model->history->data, it);
+                            if(model->history_item == 5) {
+                                if(model->idx >= 2) {
+                                    model->idx = model->history_item - 1;
+                                }
+                            }
+                            if(model->idx == model->history_item - 1) {
+                                if(model->idx != 0) {
+                                    model->idx--;
+                                }
+                            }
+                        }
+
+                        SubGhzReceiverMenuItemArray_previous(it);
+                    }
+                }
+            },
+            true);
+
+        with_view_model(
+            subghz_receiver->view,
+            SubGhzViewReceiverModel * model,
+            {
+                if(model->history_item != 0) {
+                    subghz_receiver->callback(
+                        SubGhzCustomEventViewReceiverDeleteItem, subghz_receiver->context);
+                    model->history_item--;
+                }
+            },
+            true);
     } else if(event->key == InputKeyOk && event->type == InputTypeShort) {
         with_view_model(
             subghz_receiver->view,
