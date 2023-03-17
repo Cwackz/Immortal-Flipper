@@ -4,7 +4,7 @@ App(
     apptype=FlipperAppType.EXTERNAL,
     targets=["f7"],
     entry_point="ibutton_app",
-    cdefines=["APP_IBUTTON"],
+    # cdefines=["APP_IBUTTON"],
     requires=[
         "gui",
         "dialogs",

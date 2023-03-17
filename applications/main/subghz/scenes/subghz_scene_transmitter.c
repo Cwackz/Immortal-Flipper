@@ -4,6 +4,9 @@
 #include <lib/subghz/protocols/keeloq.h>
 #include <lib/subghz/protocols/alutech_at_4n.h>
 #include <lib/subghz/protocols/star_line.h>
+#include <lib/subghz/protocols/nice_flor_s.h>
+#include <lib/subghz/protocols/somfy_telis.h>
+#include <lib/subghz/protocols/secplus_v2.h>
 
 void subghz_scene_transmitter_callback(SubGhzCustomEvent event, void* context) {
     furi_assert(context);
@@ -12,9 +15,8 @@ void subghz_scene_transmitter_callback(SubGhzCustomEvent event, void* context) {
 }
 
 bool subghz_scene_transmitter_update_data_show(void* context) {
-    //ToDo Fix
     SubGhz* subghz = context;
-
+    bool ret = false;
     if(subghz->txrx->decoder_result) {
         FuriString* key_str;
         FuriString* frequency_str;
@@ -25,30 +27,29 @@ bool subghz_scene_transmitter_update_data_show(void* context) {
         modulation_str = furi_string_alloc();
         uint8_t show_button = 0;
 
-        subghz_protocol_decoder_base_deserialize(
-            subghz->txrx->decoder_result, subghz->txrx->fff_data);
-        subghz_protocol_decoder_base_get_string(subghz->txrx->decoder_result, key_str);
+        if(subghz_protocol_decoder_base_deserialize(
+               subghz->txrx->decoder_result, subghz->txrx->fff_data) == SubGhzProtocolStatusOk) {
+            subghz_protocol_decoder_base_get_string(subghz->txrx->decoder_result, key_str);
 
-        if((subghz->txrx->decoder_result->protocol->flag & SubGhzProtocolFlag_Send) ==
-           SubGhzProtocolFlag_Send) {
-            show_button = 1;
+            if((subghz->txrx->decoder_result->protocol->flag & SubGhzProtocolFlag_Send) ==
+               SubGhzProtocolFlag_Send) {
+                show_button = 1;
+            }
+
+            subghz_get_frequency_modulation(subghz, frequency_str, modulation_str);
+            subghz_view_transmitter_add_data_to_show(
+                subghz->subghz_transmitter,
+                furi_string_get_cstr(key_str),
+                furi_string_get_cstr(frequency_str),
+                furi_string_get_cstr(modulation_str),
+                show_button);
+            ret = true;
         }
-
-        subghz_get_frequency_modulation(subghz, frequency_str, modulation_str);
-        subghz_view_transmitter_add_data_to_show(
-            subghz->subghz_transmitter,
-            furi_string_get_cstr(key_str),
-            furi_string_get_cstr(frequency_str),
-            furi_string_get_cstr(modulation_str),
-            show_button);
-
         furi_string_free(frequency_str);
         furi_string_free(modulation_str);
         furi_string_free(key_str);
-
-        return true;
     }
-    return false;
+    return ret;
 }
 
 void subghz_scene_transmitter_on_enter(void* context) {
@@ -93,6 +94,11 @@ bool subghz_scene_transmitter_on_event(void* context, SceneManagerEvent event) {
             if(keeloq_get_custom_btn() != 0) {
                 keeloq_set_btn(0);
                 alutech_set_btn(0);
+                nice_flors_set_btn(0);
+                somfy_telis_set_btn(0);
+                secplus2_set_btn(0);
+                uint8_t tmp_counter = furi_hal_subghz_get_rolling_counter_mult();
+                furi_hal_subghz_set_rolling_counter_mult(0);
                 // Calling restore!
                 if(subghz->txrx->txrx_state == SubGhzTxRxStateRx) {
                     subghz_rx_end(subghz);
@@ -105,6 +111,7 @@ bool subghz_scene_transmitter_on_event(void* context, SceneManagerEvent event) {
                 }
                 subghz_tx_stop(subghz);
                 subghz_sleep(subghz);
+                furi_hal_subghz_set_rolling_counter_mult(tmp_counter);
             }
             return true;
         } else if(event.event == SubGhzCustomEventViewTransmitterBack) {
@@ -132,6 +139,9 @@ void subghz_scene_transmitter_on_exit(void* context) {
     keeloq_reset_kl_type();
     keeloq_reset_original_btn();
     alutech_reset_original_btn();
+    nice_flors_reset_original_btn();
+    somfy_telis_reset_original_btn();
+    secplus2_reset_original_btn();
     star_line_reset_mfname();
     star_line_reset_kl_type();
 }

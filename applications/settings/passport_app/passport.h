@@ -9,7 +9,7 @@
 #include <furi_hal_version.h>
 
 #include "math.h"
-#include "dolphin/dolphin.h"
+#include <dolphin/dolphin.h>
 #include "dolphin/helpers/dolphin_state.h"
 #include "desktop/desktop_settings.h"
 #include "passport_settings/passport_settings.h"
@@ -90,6 +90,7 @@ static const char* const moods[MOOD_SET_COUNT][16] = {
      "Furious"}};
 
 typedef struct {
+    FuriMutex* mutex;
     Dolphin* dolphin;
     DolphinStats stats;
 

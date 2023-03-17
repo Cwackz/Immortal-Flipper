@@ -143,10 +143,10 @@ void passport_alloc(Passport* passport) {
     free(stats);
 }
 
-static void render_callback(Canvas* const canvas, void* mutex) {
-    furi_assert(mutex);
-
-    Passport* passport = acquire_mutex((ValueMutex*)mutex, 25);
+static void render_callback(Canvas* const canvas, void* ctx) {
+    furi_assert(ctx);
+    Passport* passport = ctx;
+    furi_mutex_acquire(passport->mutex, FuriWaitForever);
 
     if(passport->page == Main) {
         //calc bar fill ratio
@@ -661,8 +661,7 @@ static void render_callback(Canvas* const canvas, void* mutex) {
         canvas_draw_icon_animation(canvas, 70, 3, animations[AniYelVirus]);
         canvas_draw_icon_animation(canvas, 99, 3, animations[AniBluVirus]);
     }
-
-    release_mutex((ValueMutex*)mutex, passport);
+    furi_mutex_release(passport->mutex);
 }
 
 static void input_callback(InputEvent* input_event, FuriMessageQueue* event_queue) {
@@ -691,7 +690,7 @@ void passport_free(Passport* passport) {
     if(passport->settings.image == PIMG_SONIC) {
         icon_animation_free(animations[AniSonic]);
     }
-
+    furi_mutex_free(passport->mutex);
     free(passport);
 }
 
@@ -700,17 +699,17 @@ int32_t passport_app(void* p) {
     FuriMessageQueue* event_queue = furi_message_queue_alloc(8, sizeof(PassportEvent));
 
     Passport* passport = malloc(sizeof(Passport));
-
-    ValueMutex state_mutex;
-    if(!init_mutex(&state_mutex, passport, sizeof(Passport))) {
+    passport->mutex = furi_mutex_alloc(FuriMutexTypeNormal);
+    if(!passport->mutex) {
+        FURI_LOG_E("Passport", "cannot create mutex\r\n");
         passport_free(passport);
-        return 1;
+        return 255;
     }
 
     passport_alloc(passport);
 
     ViewPort* view_port = view_port_alloc();
-    view_port_draw_callback_set(view_port, render_callback, &state_mutex);
+    view_port_draw_callback_set(view_port, render_callback, passport);
     view_port_input_callback_set(view_port, input_callback, event_queue);
 
     Gui* gui = furi_record_open("gui");
@@ -722,9 +721,7 @@ int32_t passport_app(void* p) {
         if(furi_message_queue_get(event_queue, &event, 10) != FuriStatusOk) {
             continue;
         }
-
-        passport = (Passport*)acquire_mutex_block(&state_mutex);
-
+        furi_mutex_acquire(passport->mutex, FuriWaitForever);
         if(event.type == EventKeyPress) {
             switch(event.input.key) {
             case InputKeyUp:
@@ -765,17 +762,14 @@ int32_t passport_app(void* p) {
                 break;
             }
         }
-        release_mutex(&state_mutex, passport);
         view_port_update(view_port);
+        furi_mutex_release(passport->mutex);
     }
-
     gui_remove_view_port(gui, view_port);
     furi_record_close(RECORD_GUI);
     view_port_free(view_port);
     gui = NULL;
     furi_message_queue_free(event_queue);
-
     passport_free(passport);
-
     return 0;
 }

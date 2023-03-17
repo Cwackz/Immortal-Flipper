@@ -432,7 +432,7 @@ bool parse_ef_dg1(EF_DG1_contents* DG1, const uint8_t* data, size_t length) {
 }
 
 bool mrtd_read_parse_file(MrtdApplication* app, EFFile file) {
-    uint8_t buffer[100];
+    uint8_t buffer[300];
     size_t buf_len;
 
     FURI_LOG_D(TAG, "Read and parse %s (%04X)", file.name, file.file_id);

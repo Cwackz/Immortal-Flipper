@@ -1,7 +1,8 @@
 App(
     appid="infrared",
     name="Infrared",
-    apptype=FlipperAppType.EXTERNAL,
+    apptype=FlipperAppType.APP,
+    # apptype=FlipperAppType.EXTERNAL,
     entry_point="infrared_app",
     targets=["f7"],
     cdefines=["APP_INFRARED"],
@@ -9,12 +10,20 @@ App(
         "gui",
         "dialogs",
     ],
-    # provides=["infrared_start"],
-    # icon="A_Infrared_14",
+    provides=["infrared_start"],
+    icon="A_Infrared_14",
     stack_size=3 * 1024,
     order=40,
-    fap_category="Main",
-    fap_icon="ir_10px.png",
-    fap_icon_assets="images",
+    # fap_category="Main",
+    # fap_icon="ir_10px.png",
+    # fap_icon_assets="images",
     fap_libs=["assets"],
+)
+
+App(
+    appid="infrared_start",
+    apptype=FlipperAppType.STARTUP,
+    entry_point="infrared_on_system_start",
+    requires=["infrared"],
+    order=20,
 )

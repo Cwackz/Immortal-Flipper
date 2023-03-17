@@ -9,11 +9,16 @@ from datetime import date, datetime
 
 
 class GitVersion:
+    REVISION_SUFFIX_LENGTH = 8
+
     def __init__(self, source_dir):
         self.source_dir = source_dir
 
     def get_version_info(self):
-        commit = self._exec_git("rev-parse --short HEAD") or "unknown"
+        commit = (
+            self._exec_git(f"rev-parse --short={self.REVISION_SUFFIX_LENGTH} HEAD")
+            or "unknown"
+        )
 
         dirty = False
         try:
@@ -56,7 +61,7 @@ class GitVersion:
                 "GIT_BRANCH": "dev",
                 "GIT_BRANCH_NUM": branch_num,
                 "FURI_CUSTOM_FLIPPER_NAME": custom_fz_name,
-                "VERSION": "0.77.2",
+                "VERSION": "0.79.2",
                 "BUILD_DIRTY": 0,
             }
         else:
@@ -64,7 +69,7 @@ class GitVersion:
                 "GIT_COMMIT": commit,
                 "GIT_BRANCH": "dev",
                 "GIT_BRANCH_NUM": branch_num,
-                "VERSION": "0.77.2",
+                "VERSION": "0.79.2",
                 "BUILD_DIRTY": 0,
             }
 

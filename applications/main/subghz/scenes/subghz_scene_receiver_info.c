@@ -3,6 +3,9 @@
 #include <lib/subghz/protocols/keeloq.h>
 #include <lib/subghz/protocols/star_line.h>
 #include <lib/subghz/protocols/alutech_at_4n.h>
+#include <lib/subghz/protocols/nice_flor_s.h>
+#include <lib/subghz/protocols/somfy_telis.h>
+#include <lib/subghz/protocols/secplus_v2.h>
 
 void subghz_scene_receiver_info_callback(GuiButtonType result, InputType type, void* context) {
     furi_assert(context);
@@ -25,8 +28,9 @@ static bool subghz_scene_receiver_info_update_parser(void* context) {
     subghz->txrx->decoder_result = subghz_receiver_search_decoder_base_by_name(
         subghz->txrx->receiver,
         subghz_history_get_protocol_name(subghz->txrx->history, subghz->txrx->idx_menu_chosen));
+
     if(subghz->txrx->decoder_result) {
-        // In this case flipper format was changed to short file content
+        //todo we are trying to deserialize without checking for errors, since it is assumed that we just received this signal
         subghz_protocol_decoder_base_deserialize(
             subghz->txrx->decoder_result,
             subghz_history_get_raw_data(subghz->txrx->history, subghz->txrx->idx_menu_chosen));
@@ -136,7 +140,6 @@ bool subghz_scene_receiver_info_on_event(void* context, SceneManagerEvent event)
                        subghz,
                        subghz_history_get_raw_data(
                            subghz->txrx->history, subghz->txrx->idx_menu_chosen))) {
-                    scene_manager_next_scene(subghz->scene_manager, SubGhzSceneShowOnlyRx);
                     if(subghz->txrx->txrx_state == SubGhzTxRxStateTx) {
                         subghz_tx_stop(subghz);
                     }
@@ -236,6 +239,9 @@ void subghz_scene_receiver_info_on_exit(void* context) {
     keeloq_reset_kl_type();
     keeloq_reset_original_btn();
     alutech_reset_original_btn();
+    nice_flors_reset_original_btn();
+    somfy_telis_reset_original_btn();
+    secplus2_reset_original_btn();
     star_line_reset_mfname();
     star_line_reset_kl_type();
 }

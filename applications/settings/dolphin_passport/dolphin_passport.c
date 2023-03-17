@@ -22,6 +22,7 @@ typedef struct {
 } PassportEvent;
 
 typedef struct {
+    FuriMutex* mutex;
     Dolphin* dolphin;
     DolphinStats stats;
 
@@ -153,10 +154,10 @@ void passport_set_variables(Passport* passport) {
     free(stats);
 }
 
-static void render_callback(Canvas* const canvas, void* mutex) {
-    furi_assert(mutex);
-
-    Passport* passport = acquire_mutex((ValueMutex*)mutex, 25);
+static void render_callback(Canvas* const canvas, void* ctx) {
+    furi_assert(ctx);
+    Passport* passport = ctx;
+    furi_mutex_acquire(passport->mutex, FuriWaitForever);
 
     //calc bar fill ratio
     //default bar is 65px wide
@@ -204,7 +205,7 @@ static void render_callback(Canvas* const canvas, void* mutex) {
         canvas_draw_rbox(canvas, 59, 46, passport->xp_fill, 4, 1);
     }
 
-    release_mutex((ValueMutex*)mutex, passport);
+    furi_mutex_release(passport->mutex);
 }
 
 static void input_callback(InputEvent* input_event, FuriMessageQueue* event_queue) {
@@ -219,16 +220,17 @@ int32_t dolphin_passport_app(void* p) {
 
     Passport* passport = malloc(sizeof(Passport));
 
-    ValueMutex state_mutex;
-    if(!init_mutex(&state_mutex, passport, sizeof(Passport))) {
+    passport->mutex = furi_mutex_alloc(FuriMutexTypeNormal);
+    if(!passport->mutex) {
+        FURI_LOG_E("Passport", "cannot create mutex\r\n");
         free(passport);
-        return 1;
+        return 255;
     }
 
     passport_set_variables(passport);
 
     ViewPort* view_port = view_port_alloc();
-    view_port_draw_callback_set(view_port, render_callback, &state_mutex);
+    view_port_draw_callback_set(view_port, render_callback, passport);
     view_port_input_callback_set(view_port, input_callback, event_queue);
 
     Gui* gui = furi_record_open("gui");
@@ -241,7 +243,7 @@ int32_t dolphin_passport_app(void* p) {
             continue;
         }
 
-        passport = (Passport*)acquire_mutex_block(&state_mutex);
+        furi_mutex_acquire(passport->mutex, FuriWaitForever);
 
         if(event.type == EventKeyPress) {
             switch(event.input.key) {
@@ -259,17 +261,15 @@ int32_t dolphin_passport_app(void* p) {
                 break;
             }
         }
-        release_mutex(&state_mutex, passport);
         view_port_update(view_port);
+        furi_mutex_release(passport->mutex);
     }
-
     gui_remove_view_port(gui, view_port);
     furi_record_close(RECORD_GUI);
     view_port_free(view_port);
     gui = NULL;
     furi_message_queue_free(event_queue);
-
+    furi_mutex_free(passport->mutex);
     free(passport);
-
     return 0;
 }

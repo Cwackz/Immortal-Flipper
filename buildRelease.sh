@@ -8,4 +8,14 @@ HASH_VAR=`git rev-parse \`git branch -r --sort=committerdate | tail -1\` | awk '
 mv dist/f7-C/f7-update-RM420FAP "RM$DATE_VAR-$TIME_VAR"
 zip -rq "RM$DATE_VAR-$TIME_VAR-$VER_VAR-$HASH_VAR.zip" "RM$DATE_VAR-$TIME_VAR"
 tar -czf "RM$DATE_VAR-$TIME_VAR-$VER_VAR-$HASH_VAR.tgz" "RM$DATE_VAR-$TIME_VAR"
+cp -r "RM$DATE_VAR-$TIME_VAR" "RM$DATE_VAR-$TIME_VAR-NoAnim"
+rm -rf assets/resources/dolphin/*
+cd assets/resources
+tar -cf "../../RM$DATE_VAR-$TIME_VAR-NoAnim/resources.tar" *
+cd ../../
+zip -rq "RM$DATE_VAR-$TIME_VAR-$VER_VAR-$HASH_VAR-NoAnim.zip" "RM$DATE_VAR-$TIME_VAR-NoAnim"
+tar -czf "RM$DATE_VAR-$TIME_VAR-$VER_VAR-$HASH_VAR-NoAnim.tgz" "RM$DATE_VAR-$TIME_VAR-NoAnim"
+rm -rf "RM$DATE_VAR-$TIME_VAR"
+rm -rf "RM$DATE_VAR-$TIME_VAR-NoAnim"
+git stash
 echo "BUILD COMPLETED, ZIP AND TGZ GENERATED FOR RM$DATE_VAR-$TIME_VAR-$VER_VAR-$HASH_VAR"

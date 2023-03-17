@@ -1,0 +1,11 @@
+App(
+    appid="TRex_Runner",
+    name="T-Rex Runner",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="trexrunner_app",
+    requires=["gui"],
+    stack_size=8 * 1024,
+    fap_category="Misc",
+    fap_icon="trexrunner_icon.png",
+    order=36,
+)
